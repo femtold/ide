@@ -1,4 +1,4 @@
-package com.radioflex.ide;
+package com.radioflex.ide.ui;
 
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;

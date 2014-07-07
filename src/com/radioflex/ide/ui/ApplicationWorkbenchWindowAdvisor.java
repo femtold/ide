@@ -1,4 +1,4 @@
-package com.radioflex.ide;
+package com.radioflex.ide.ui;
 
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.ui.application.ActionBarAdvisor;

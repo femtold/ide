@@ -1,4 +1,4 @@
-package com.radioflex.ide;
+package com.radioflex.ide.ui;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;

@@ -1,4 +1,4 @@
-package com.radioflex.ide;
+package com.radioflex.ide.ui;
 
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
 import org.eclipse.ui.application.WorkbenchAdvisor;
