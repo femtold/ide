@@ -91,14 +91,6 @@
          </menu>
          <menu
                label="Editor">
-            <separator
-                  name="com.radioflex.ide.separator4"
-                  visible="true">
-            </separator>
-            <separator
-                  name="com.radioflex.ide.separator5"
-                  visible="true">
-            </separator>
             <command
                   commandId="com.radioflex.ide.command.redo"
                   label="Redo"
@@ -109,6 +101,10 @@
                   label="Undo"
                   style="push">
             </command>
+            <separator
+                  name="com.radioflex.ide.separator4"
+                  visible="true">
+            </separator>
             <command
                   commandId="com.radioflex.ide.command.copy"
                   label="Copy"
@@ -124,6 +120,10 @@
                   label="Cut"
                   style="push">
             </command>
+            <separator
+                  name="com.radioflex.ide.separator5"
+                  visible="true">
+            </separator>
             <command
                   commandId="com.radioflex.ide.command.findandreplace"
                   label="Find and Replace"
@@ -132,23 +132,15 @@
          </menu>
          <menu
                label="Debug">
-            <separator
-                  name="com.radioflex.ide.separator6"
-                  visible="true">
-            </separator>
-            <separator
-                  name="com.radioflex.ide.separator7"
-                  visible="true">
-            </separator>
-            <separator
-                  name="com.radioflex.ide.separator8"
-                  visible="true">
-            </separator>
             <command
                   commandId="com.radioflex.ide.command.build"
                   label="Build"
                   style="push">
             </command>
+            <separator
+                  name="com.radioflex.ide.separator6"
+                  visible="true">
+            </separator>
             <command
                   commandId="com.radioflex.ide.command.start"
                   label="Start"
@@ -169,6 +161,10 @@
                   label="Step"
                   style="push">
             </command>
+            <separator
+                  name="com.radioflex.ide.separator7"
+                  visible="true">
+            </separator>
             <command
                   commandId="com.radioflex.ide.command.setbreakpoint"
                   label="Set Breakpoint"
@@ -179,6 +175,10 @@
                   label="Remove Breakpoint"
                   style="push">
             </command>
+            <separator
+                  name="com.radioflex.ide.separator8"
+                  visible="true">
+            </separator>
             <command
                   commandId="com.radioflex.ide.command.switchmodel"
                   label="Switch Model"
