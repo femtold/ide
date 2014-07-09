@@ -20,12 +20,8 @@ public class NewFileHandler extends AbstractHandler implements IHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		// TODO Auto-generated method stub
-		/*IWorkbenchWizard */NewFileWizard wizard = new NewFileWizard();
-		WizardDialog dialog = new WizardDialog(shell, wizard);
-		if(dialog.open()==Window.OK){
-			System.out.println("Dialog Open");
-		}
+		WizardDialog dialog = new WizardDialog(shell, new NewFileWizard());
+		dialog.open();
 		return null;
 	}
 
