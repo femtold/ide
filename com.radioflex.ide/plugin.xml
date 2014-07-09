@@ -249,5 +249,16 @@
             commandId="com.radioflex.ide.command.newfile">
       </handler>
    </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            canFinishEarly="true"
+            class="com.radioflex.ide.ui.wizards.NewFileWizard"
+            hasPages="true"
+            id="com.radioflex.ide.newfilewizard"
+            name="NewFileWizard"
+            project="false">
+      </wizard>
+   </extension>
 
 </plugin>

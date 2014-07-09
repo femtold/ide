@@ -4,12 +4,17 @@ import org.eclipse.ui.wizards.newresource.BasicNewFileResourceWizard;
 
 public class NewFileWizard extends BasicNewFileResourceWizard {
 
-
-/*	private IStructuredSelection selection;
-	private IWorkbench workbench;
-	private NewFileWizardPage page;*/
-
 	private NewFileWizardPage page;
+	
+	
+
+	public NewFileWizard() {
+		super();
+		System.out.println("new NewFileWizard");
+		// TODO Auto-generated constructor stub
+	}
+
+
 
 	@Override
 	public void addPages() {
@@ -18,18 +23,4 @@ public class NewFileWizard extends BasicNewFileResourceWizard {
 		addPage(page);
 	}
 	
-/*	@Override
-	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		// TODO Auto-generated method stub
-		this.workbench = workbench;
-		this.selection = selection;
-	}
-
-	@Override
-	public boolean performFinish() {
-		// TODO Auto-generated method stub
-		return true;
-	}*/
-	
-
 }
