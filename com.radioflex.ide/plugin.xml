@@ -240,17 +240,13 @@
                   style="push">
             </command>
          </toolbar>
-         <command
-               commandId="com.radioflex.ide.command34"
-               label="10"
-               style="push">
-         </command>
       </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            commandId="com.radioflex.ide.handler1">
+            class="com.radioflex.ide.ui.handlers.NewFileHandler"
+            commandId="com.radioflex.ide.command.newfile">
       </handler>
    </extension>
 
