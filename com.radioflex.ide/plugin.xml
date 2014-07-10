@@ -282,9 +282,51 @@
       <editor
             class="com.radioflex.ide.ui.editor.RadioflexEditor"
             default="false"
+            extensions="asm"
             id="com.radioflex.ide.editor1"
             name="RadioflexEditor">
       </editor>
    </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            name="Project Explorer"
+            class="org.eclipse.ui.navigator.CommonNavigator"
+            id="example.view">
+      </view>
+   </extension>
+    <extension
+         point="org.eclipse.ui.navigator.viewer">
+       <viewerContentBinding 
+            viewerId="example.view">
+          <includes>
+             <contentExtension
+                   pattern="com.ide.projectExplorer.navigatorContent">
+             </contentExtension>
+          </includes>
+       </viewerContentBinding>
+       <viewerActionBinding
+             viewerId="example.view">
+          <includes>
+             <actionExtension
+                   pattern="org.eclipse.ui.navigator.resources.*">
+             </actionExtension>
+          </includes>
+       </viewerActionBinding>
+   </extension>
+    <extension
+          point="org.eclipse.ui.navigator.navigatorContent">
+       <navigatorContent
+             contentProvider="com.radioflex.ide.ui.navigator.CustomContentProvider"
+             id="com.ide.projectExplorer.navigatorContent"
+             labelProvider="com.radioflex.ide.ui.navigator.CustomLabelProvider"
+             name="IDE Navigator Content">
+          <triggerPoints>
+             <instanceof
+                   value="org.eclipse.core.resources.IWorkspaceRoot">
+             </instanceof>
+          </triggerPoints>
+       </navigatorContent>
+    </extension>
 
 </plugin>
