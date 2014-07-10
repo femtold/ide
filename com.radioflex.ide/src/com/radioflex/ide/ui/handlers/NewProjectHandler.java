@@ -10,20 +10,20 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 
-import com.radioflex.ide.ui.wizards.NewFileWizard;
+import com.radioflex.ide.ui.wizards.NewProjectWizard;
 
-public class NewFileHandler extends AbstractHandler implements IHandler {
+public class NewProjectHandler extends AbstractHandler implements IHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-
+		// TODO Auto-generated method stub
 		IWorkbenchWindow window = HandlerUtil
 				.getActiveWorkbenchWindowChecked(event);
-
-		NewFileWizard nfw = new NewFileWizard();
-		nfw.init(PlatformUI.getWorkbench(), new StructuredSelection());
 		
-		WizardDialog dialog = new WizardDialog(window.getShell(), nfw);
+		NewProjectWizard npw = new NewProjectWizard();
+		npw.init(PlatformUI.getWorkbench(), new StructuredSelection());
+		
+		WizardDialog dialog = new WizardDialog(window.getShell(), npw);
 		dialog.open();
 		return null;
 	}

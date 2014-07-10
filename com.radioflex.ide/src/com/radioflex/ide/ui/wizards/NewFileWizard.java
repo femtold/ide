@@ -1,16 +1,16 @@
 package com.radioflex.ide.ui.wizards;
 
+import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.wizards.newresource.BasicNewFileResourceWizard;
 
 public class NewFileWizard extends BasicNewFileResourceWizard {
 
-	private NewFileWizardPage page;
+	private WizardNewFileCreationPage page;
 	
 	
 
 	public NewFileWizard() {
 		super();
-		System.out.println("new NewFileWizard");
 		// TODO Auto-generated constructor stub
 	}
 
@@ -19,7 +19,7 @@ public class NewFileWizard extends BasicNewFileResourceWizard {
 	@Override
 	public void addPages() {
 		// TODO Auto-generated method stub
-		page = new NewFileWizardPage("new file", selection);
+		page = new WizardNewFileCreationPage("new file", selection);
 		addPage(page);
 	}
 	

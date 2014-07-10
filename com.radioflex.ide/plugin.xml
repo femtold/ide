@@ -78,11 +78,19 @@
                   name="com.radioflex.ide.separator3"
                   visible="true">
             </separator>
-            <command
-                  commandId="com.radioflex.ide.command.projectsetting"
-                  label="Project Setting ..."
-                  style="push">
-            </command>
+            <menu
+                  label="Project Setting ...">
+               <command
+                     commandId="com.radioflex.ide.command.buildsetting"
+                     label="Build Setting"
+                     style="push">
+               </command>
+               <command
+                     commandId="com.radioflex.ide.command.debugsetting"
+                     label="Debug Setting"
+                     style="push">
+               </command>
+            </menu>
             <command
                   commandId="com.radioflex.ide.command.exit"
                   label="Exit ..."
@@ -248,17 +256,26 @@
             class="com.radioflex.ide.ui.handlers.NewFileHandler"
             commandId="com.radioflex.ide.command.newfile">
       </handler>
-   </extension>
-   <extension
-         point="org.eclipse.ui.newWizards">
-      <wizard
-            canFinishEarly="true"
-            class="com.radioflex.ide.ui.wizards.NewFileWizard"
-            hasPages="true"
-            id="com.radioflex.ide.newfilewizard"
-            name="NewFileWizard"
-            project="false">
-      </wizard>
+      <handler
+            class="com.radioflex.ide.ui.handlers.NewProjectHandler"
+            commandId="com.radioflex.ide.command.newproject">
+      </handler>
+      <handler
+            class="com.radioflex.ide.ui.handlers.OpenFileHandler"
+            commandId="com.radioflex.ide.command.openfile">
+      </handler>
+      <handler
+            class="com.radioflex.ide.ui.handlers.SaveAsHandler"
+            commandId="com.radioflex.ide.command.saveas">
+      </handler>
+      <handler
+            class="com.radioflex.ide.ui.handlers.OpenProjectHandler"
+            commandId="com.radioflex.ide.command.openproject">
+      </handler>
+      <handler
+            class="com.radioflex.ide.ui.handlers.ExitHandler"
+            commandId="com.radioflex.ide.command.exit">
+      </handler>
    </extension>
 
 </plugin>
