@@ -23,4 +23,8 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
         configurer.setShowStatusLine(false);
         configurer.setTitle("Hello RCP"); //$NON-NLS-1$
     }
+    public void postWindowOpen(){
+    	getWindowConfigurer().getWindow().getShell().setMaximized(true);
+    }
+    
 }
