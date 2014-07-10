@@ -277,5 +277,14 @@
             commandId="com.radioflex.ide.command.exit">
       </handler>
    </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.radioflex.ide.ui.editor.RadioflexEditor"
+            default="false"
+            id="com.radioflex.ide.editor1"
+            name="RadioflexEditor">
+      </editor>
+   </extension>
 
 </plugin>
