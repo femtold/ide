@@ -282,6 +282,7 @@
       <editor
             class="com.radioflex.ide.ui.editor.RadioflexEditor"
             default="false"
+            extensions="asm"
             id="com.radioflex.ide.editor1"
             name="RadioflexEditor">
       </editor>
