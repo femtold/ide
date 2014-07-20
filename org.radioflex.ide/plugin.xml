@@ -18,6 +18,11 @@
             class="org.radioflex.ide.Perspective"
             id="org.radioflex.ide.perspective">
       </perspective>
+      <perspective
+            class="org.radioflex.ide.ui.PerspectiveIDE"
+            id="org.radioflex.ide.perspective.edit"
+            name="Edit Perspective">
+      </perspective>
    </extension>
    <extension
          point="org.eclipse.ui.views">
@@ -144,6 +149,17 @@
        <initializer
              class="org.radioflex.ide.ui.PreferencesInitializer">
        </initializer>
+    </extension>
+    <extension
+          point="org.eclipse.ui.editors">
+       <editor
+             class="org.radioflex.ide.editor.ASMEditor"
+             default="true"
+             extensions="asm"
+             icon="icons/asm.gif"
+             id="org.radioflex.ide.editor"
+             name="ASM Editor">
+       </editor>
     </extension>
 
 </plugin>
