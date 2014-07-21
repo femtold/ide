@@ -27,18 +27,18 @@
          <menu
                label="File">
             <command
-                  commandId="com.radioflex.ide.command.newfile"
-                  label="New File ..."
+                  commandId="org.eclipse.ui.newWizard"
+                  label="New"
                   style="push">
             </command>
             <command
-                  commandId="com.radioflex.ide.command.openfile"
+                  commandId="org.eclipse.ui.edit.text.openLocalFile"
                   label="Open File ..."
                   style="push">
             </command>
             <command
-                  commandId="com.radioflex.ide.command.close"
-                  label="Close File ..."
+                  commandId="org.eclipse.ui.file.close"
+                  label="Close"
                   style="push">
             </command>
             <separator
@@ -46,18 +46,8 @@
                   visible="true">
             </separator>
             <command
-                  commandId="com.radioflex.ide.command.newproject"
-                  label="New Project ..."
-                  style="push">
-            </command>
-            <command
-                  commandId="com.radioflex.ide.command.openproject"
-                  label="Open Project ..."
-                  style="push">
-            </command>
-            <command
-                  commandId="com.radioflex.ide.command.closeproject"
-                  label="Close Project ..."
+                  commandId="org.eclipse.ui.file.closeAll"
+                  label="Close All"
                   style="push">
             </command>
             <separator
@@ -65,12 +55,12 @@
                   visible="true">
             </separator>
             <command
-                  commandId="com.radioflex.ide.command.savefile"
-                  label="Save File ..."
+                  commandId="edu.suda.ide.command.save"
+                  label="Save"
                   style="push">
             </command>
             <command
-                  commandId="com.radioflex.ide.command.saveas"
+                  commandId="org.eclipse.ui.file.saveAs"
                   label="Save As ..."
                   style="push">
             </command>
@@ -91,6 +81,16 @@
                      style="push">
                </command>
             </menu>
+            <command
+                  commandId="org.eclipse.ui.file.import"
+                  label="Import"
+                  style="push">
+            </command>
+            <command
+                  commandId="org.eclipse.ui.file.export"
+                  label="Export"
+                  style="push">
+            </command>
             <command
                   commandId="com.radioflex.ide.command.exit"
                   label="Exit ..."

@@ -21,7 +21,7 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
         configurer.setInitialSize(new Point(400, 300));
         configurer.setShowCoolBar(false);
         configurer.setShowStatusLine(false);
-        configurer.setTitle("RadioFlex Develope Environment"); //$NON-NLS-1$
+        configurer.setTitle("RadioFlex Develop Environment"); //$NON-NLS-1$
     }
     public void postWindowOpen(){
     	getWindowConfigurer().getWindow().getShell().setMaximized(true);
