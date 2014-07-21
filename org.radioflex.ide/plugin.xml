@@ -27,31 +27,11 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            class="org.eclipse.ui.navigator.CommonNavigator"
-            icon="icons/asm.gif"
-            id="org.radioflex.ide.projectview"
-            name="ASM Project Explorer">
+            class="org.radioflex.ide.navigetor.CustomNavigator"
+            id="example.view"
+            name="Project Explorer"
+            restorable="true">
       </view>
-   </extension>
-   <extension
-         point="org.eclipse.ui.navigator.viewer">
-       <viewerContentBinding 
-            viewerId="org.radioflex.ide.projectview">
-          <includes>
-       	     <contentExtension pattern="org.eclipse.ui.navigator.resourceContent" />		       	      
-	         <contentExtension pattern="org.eclipse.ui.navigator.resources.filters.*"/>
-	         <contentExtension pattern="org.eclipse.ui.navigator.resources.linkHelper"/>
-             <contentExtension pattern="org.eclipse.ui.navigator.resources.workingSets"/>
-          </includes>
-       </viewerContentBinding>
-        <viewerActionBinding
-            viewerId="org.radioflex.ide.projectview">
-         <includes>
-            <actionExtension
-                  pattern="org.eclipse.ui.navigator.resources.*">
-            </actionExtension>
-         </includes>
-      </viewerActionBinding>
    </extension>
     <extension
           point="org.eclipse.ui.editors">
@@ -160,6 +140,38 @@
        <initializer
              class="org.radioflex.ide.ui.PreferencesInitializer">
        </initializer>
+    </extension>
+    <extension
+          point="org.eclipse.ui.navigator.viewer">
+       <viewerContentBinding
+             viewerId="example.view">
+          <includes>
+             <contentExtension
+                   pattern="org.radioflex.ide.navigatorContent">
+             </contentExtension>
+          </includes>
+       </viewerContentBinding>
+       <viewerActionBinding
+             viewerId="example.view">
+          <includes>
+             <actionExtension
+                   pattern="org.eclipse.ui.navigator.resources.*">
+             </actionExtension></includes>
+       </viewerActionBinding>
+    </extension>
+    <extension
+          point="org.eclipse.ui.navigator.navigatorContent">
+       <navigatorContent
+             contentProvider="org.radioflex.ide.navigetor.CustomContentProvider"
+             id="org.radioflex.ide.navigatorContent"
+             labelProvider="org.radioflex.ide.navigetor.CustomLabelProvider"
+             name="IDE Navigator Content">
+          <triggerPoints>
+             <instanceof
+                   value="org.eclipse.core.resources.IWorkspaceRoot">
+             </instanceof>
+          </triggerPoints>
+       </navigatorContent>
     </extension>
 
 </plugin>
