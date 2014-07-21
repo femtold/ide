@@ -53,6 +53,17 @@
          </includes>
       </viewerActionBinding>
    </extension>
+    <extension
+          point="org.eclipse.ui.editors">
+       <editor
+             class="org.radioflex.ide.editor.ASMEditor"
+             default="true"
+             extensions="asm"
+             icon="icons/asm.gif"
+             id="org.radioflex.ide.editor"
+             name="ASM Editor">
+       </editor>
+    </extension>
    <extension
          point="org.eclipse.ui.newWizards">
       <wizard
@@ -149,17 +160,6 @@
        <initializer
              class="org.radioflex.ide.ui.PreferencesInitializer">
        </initializer>
-    </extension>
-    <extension
-          point="org.eclipse.ui.editors">
-       <editor
-             class="org.radioflex.ide.editor.ASMEditor"
-             default="true"
-             extensions="asm"
-             icon="icons/asm.gif"
-             id="org.radioflex.ide.editor"
-             name="ASM Editor">
-       </editor>
     </extension>
 
 </plugin>

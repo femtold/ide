@@ -20,6 +20,12 @@ public class Constants {
 	 * The IDE perspective ID.
 	 */
 	public static final String IDE_PERSPECTIVE_ID = PLUGIN_ID + ".perspective.rcp";
+	
+	/**
+	 * The ASM page ID.
+	 */
+	public static final String PREFERENCES_ASM_ID = "org.radioflex.ide.page.asm";
+	
 	/**
 	 * The Nature ID.
 	 */

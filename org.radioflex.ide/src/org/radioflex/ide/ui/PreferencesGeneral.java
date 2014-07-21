@@ -3,6 +3,7 @@ package org.radioflex.ide.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.preference.ColorSelector;
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -30,7 +31,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
-import org.eclipse.ui.model.WorkbenchViewerSorter;
+import org.eclipse.ui.model.WorkbenchViewerComparator;
+import org.osgi.service.prefs.BackingStoreException;
 import org.radioflex.ide.Activator;
 import org.radioflex.ide.Constants;
 import org.radioflex.ide.Messages;
@@ -155,7 +157,7 @@ public class PreferencesGeneral extends PreferencePage implements
 				.setLabelProvider(new ColorListLabelProvider());
 		fHighlightingColorListViewer
 				.setContentProvider(new ColorListContentProvider());
-		fHighlightingColorListViewer.setSorter(new WorkbenchViewerSorter());
+		fHighlightingColorListViewer.setComparator(new WorkbenchViewerComparator());
 		gd = new GridData(SWT.BEGINNING, SWT.FILL, false, true);
 		gd.heightHint = convertHeightInCharsToPixels(5);
 		fHighlightingColorListViewer.getControl().setLayoutData(gd);
@@ -314,7 +316,12 @@ public class PreferencesGeneral extends PreferencePage implements
 		}
 
 		if (changes) {
-			Activator.getDefault().savePluginPreferences();
+		    //Activator.getDefault().savePluginPreferences();
+			try {
+				InstanceScope.INSTANCE.getNode(Constants.PREFERENCES_ASM_ID).flush();
+			} catch (BackingStoreException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -357,22 +364,6 @@ public class PreferencesGeneral extends PreferencePage implements
 
 		/** Item value changes */
 		private boolean change = false;
-
-		/**
-		 * Initialize the item with the given values.
-		 * 
-		 * @param displayName
-		 *            the display name
-		 * @param itemKey
-		 *            the color preference key
-		 */
-		public HighlightingColorListItem(String displayName, String itemKey) {
-			fDisplayName = displayName;
-			fItemKey = itemKey;
-			fItemColor = new Color(Display.getCurrent(), 0, 0, 0);
-			fItemBold = false;
-			fItemItalic = false;
-		}
 
 		/**
 		 * Initialize the item with the given values.
@@ -430,17 +421,6 @@ public class PreferencesGeneral extends PreferencePage implements
 		 */
 		public boolean getItemItalic() {
 			return fItemItalic;
-		}
-
-		/**
-		 * Set the Item color
-		 * 
-		 * @param color
-		 *            The Color to be set.
-		 */
-		public void setItemColor(Color color) {
-			fItemColor = color;
-			change = true;
 		}
 
 		/**
@@ -521,6 +501,7 @@ public class PreferencesGeneral extends PreferencePage implements
 		/**
 		 * {@inheritDoc}
 		 */
+		@SuppressWarnings("rawtypes")
 		public Object[] getElements(Object inputElement) {
 			return ((java.util.List) inputElement).toArray();
 		}

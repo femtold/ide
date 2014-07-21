@@ -7,7 +7,9 @@ public class PerspectiveIDE implements IPerspectiveFactory {
 		
 		
 	    public void createInitialLayout(IPageLayout layout) {
-	    	layout.addView("org.radioflex.ide.projectview", IPageLayout.LEFT, 0.4f, IPageLayout.ID_EDITOR_AREA);
+	    	
+	    	layout.addView("org.radioflex.ide.projectview", IPageLayout.LEFT, 0.3f, IPageLayout.ID_EDITOR_AREA);
+	    	layout.setFixed(true);
 	    }
 	}
 
