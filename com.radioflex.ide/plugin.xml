@@ -36,15 +36,15 @@
                   label="Open File ..."
                   style="push">
             </command>
+            <separator
+                  name="com.radioflex.ide.separator1"
+                  visible="true">
+            </separator>
             <command
                   commandId="org.eclipse.ui.file.close"
                   label="Close"
                   style="push">
             </command>
-            <separator
-                  name="com.radioflex.ide.separator1"
-                  visible="true">
-            </separator>
             <command
                   commandId="org.eclipse.ui.file.closeAll"
                   label="Close All"
@@ -196,6 +196,14 @@
          <menu
                label="Help">
          </menu>
+         <menu
+               label="Preference">
+            <command
+                  commandId="org.eclipse.ui.window.preferences"
+                  label="Preference"
+                  style="push">
+            </command>
+         </menu>
       </menuContribution>
       <menuContribution
             allPopups="false"
@@ -327,6 +335,20 @@
              </instanceof>
           </triggerPoints>
        </navigatorContent>
+    </extension>
+    <extension
+          point="org.eclipse.ui.preferencePages">
+       <page
+             class="com.radioflex.ide.ui.preference.PreferencesGeneral"
+             id="com.radioflex.ide.page1"
+             name="Prefrence">
+       </page>
+    </extension>
+    <extension
+          point="org.eclipse.core.runtime.preferences">
+       <initializer
+             class="com.radioflex.ide.ui.preference.PreferencesInitializer">
+       </initializer>
     </extension>
 
 </plugin>
