@@ -40,7 +40,7 @@ public class ASMVistor implements IResourceProxyVisitor, IResourceDeltaVisitor {
 		return true;
 
 	}
-
+	
 	private void processResource(IResource resource) throws CoreException {
 		if (resource instanceof IFile) {
 			try {
