@@ -1,6 +1,7 @@
 package com.radioflex.ide.ui;
 
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.graphics.RGB;
 
 /**
  * Class which holds several constants.
@@ -71,4 +72,5 @@ public class Constants {
 	 */
 	public static final ImageDescriptor WIZARD_NEW = Activator
 			.getImageDescriptor("icons/newWizard.gif");
+
 }

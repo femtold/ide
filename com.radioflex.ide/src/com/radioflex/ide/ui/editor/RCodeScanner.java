@@ -1,77 +1,104 @@
 package com.radioflex.ide.ui.editor;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
-import org.eclipse.jface.text.TextAttribute;
-import org.eclipse.jface.text.rules.EndOfLineRule;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.rules.IRule;
-import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.jface.text.rules.RuleBasedScanner;
-import org.eclipse.jface.text.rules.SingleLineRule;
 import org.eclipse.jface.text.rules.Token;
-import org.eclipse.jface.text.rules.WhitespaceRule;
-import org.eclipse.jface.text.rules.WordRule;
+import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.jface.util.PropertyChangeEvent;
+import org.eclipse.swt.graphics.Device;
 
-public class RCodeScanner extends RuleBasedScanner {
-	private static String[] rfmacros = { "#include", "#define", "#if", "#else",
-			"#end" };
-	private static String[] rfregister = { "r", "a", "spar", "cpar", "cr" };
+import com.radioflex.ide.ui.Activator;
+import com.radioflex.ide.ui.Constants;
+import com.radioflex.ide.ui.preference.TextAttributeConverter;
 
-	private static String[] rfderivatives = { ".org", ".align", ".skip",
-			".code", ".text", ".data", ".w", ".dw" };
+public class RCodeScanner extends RuleBasedScanner implements
+		IPropertyChangeListener {
+	private Token instructionToken;
+	private Token segmentToken;
+	private RadioflexEditor editor;
 
-	private static String[] rfinstructions = { "abs", "add", "addc", "addi",
-			"sub", "subc", "div", "cmp", "cpi", "and", "or", "xor", "not",
-			"ash", "ashi", "lsh", "lshi", "ror", "rol", "clz", "nop", "break",
-			"jmp", "call", "ret", "idle", "wait", "loop", "loopi", "move",
-			"setlo", "sethi", "load", "store", "in", "inr", "out", "outr" };
-
-	public RCodeScanner(RColorProvider cp) {
-		super();
-
-		IToken macros = new Token(new TextAttribute(
-				cp.getColor(RColorProvider.MACROS)));
-		IToken derivative = new Token(new TextAttribute(
-				cp.getColor(RColorProvider.DERIVATIVE)));
-		IToken register = new Token(new TextAttribute(
-				cp.getColor(RColorProvider.REGISTER)));
-		IToken instructions = new Token(new TextAttribute(
-				cp.getColor(RColorProvider.INSTRUCTIONS)));
-		IToken string = new Token(new TextAttribute(
-				cp.getColor(RColorProvider.STRING)));
-		IToken comment = new Token(new TextAttribute(
-				cp.getColor(RColorProvider.SINGLE_LINE_COMMENT)));
-		IToken other = new Token(new TextAttribute(
-				cp.getColor(RColorProvider.DEFAULT)));
+	public RCodeScanner(final RadioflexEditor editor) {
+		this.editor = editor;
 
 		ArrayList<IRule> rules = new ArrayList<IRule>();
+		createTokens(editor.getSite().getShell().getDisplay());
 
-		rules.add(new EndOfLineRule(";", comment));
-		rules.add(new SingleLineRule("\"", "\"", string));
-		rules.add(new SingleLineRule("'", "'", string));
-		rules.add(new WhitespaceRule(new RWhitespaceDetector()));
+		Activator.getDefault().getPreferenceStore()
+				.addPropertyChangeListener(this);
 
-		WordRule wordrule = new WordRule(new RWordDetector(), other);
-		for (int i = 0; i < rfmacros.length; i++) {
-			wordrule.addWord(rfmacros[i], macros);
-			wordrule.addWord(rfmacros[i].toUpperCase(), macros);
-		}
-		for (int i = 0; i < rfregister.length; i++) {
-			wordrule.addWord(rfregister[i], register);
-			wordrule.addWord(rfregister[i].toUpperCase(), register);
-		}
-		for (int i = 0; i < rfderivatives.length; i++) {
-			wordrule.addWord(rfderivatives[i], derivative);
-			wordrule.addWord(rfderivatives[i].toUpperCase(), derivative);
-		}
-		for (int i = 0; i < rfinstructions.length; i++) {
-			wordrule.addWord(rfinstructions[i], instructions);
-			wordrule.addWord(rfinstructions[i].toUpperCase(), instructions);
-		}
-		rules.add(wordrule);
+		WordRuleCaseInsensitive wordRule = new WordRuleCaseInsensitive();
+		HashMap<String, String> instructions = SyntaxKeywords
+				.getInstructions();
 
-		IRule[] results = new IRule[rules.size()];
-		rules.toArray(results);
-		setRules(results);
+		if (instructions != null) {
+			for (String instruction : instructions.keySet()) {
+				wordRule.addWord(instruction, instructionToken);
+			}
+		}
+		rules.add(wordRule);
+
+		wordRule = new WordRuleCaseInsensitive();
+		HashMap<String, String> segments = SyntaxKeywords.getSegments();
+		if (segments != null) {
+			for (String segment : segments.keySet()) {
+				wordRule.addWord(segment, segmentToken);
+			}
+		}
+		rules.add(wordRule);
+
+		setRules(rules.toArray(new IRule[] {}));
+	}
+
+	
+	/**
+	 * Disposes the PropertyChangeListener from the PreferenceStore.
+	 */
+	public void dispose() {
+		Activator.getDefault().getPreferenceStore()
+				.removePropertyChangeListener(this);
+	}
+	
+	/**
+	 * Create all Tokens.
+	 * 
+	 * @param device
+	 *            The device is needed for the color of the Tokens.
+	 */
+	private void createTokens(Device device) {
+		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+
+		instructionToken = new Token(
+				TextAttributeConverter.preferenceDataToTextAttribute(store
+						.getString(Constants.PREFERENCES_TEXTCOLOR_INSTRUCTION)));
+
+		segmentToken = new Token(
+				TextAttributeConverter.preferenceDataToTextAttribute(store
+						.getString(Constants.PREFERENCES_TEXTCOLOR_SEGMENT)));
+	}
+
+
+	public void propertyChange(PropertyChangeEvent event) {
+		if (event.getProperty().equals(
+				Constants.PREFERENCES_TEXTCOLOR_INSTRUCTION)) {
+			instructionToken
+					.setData(TextAttributeConverter
+							.preferenceDataToTextAttribute((String) event
+									.getNewValue()));
+		} else if (event.getProperty().equals(
+				Constants.PREFERENCES_TEXTCOLOR_SEGMENT)) {
+			segmentToken
+					.setData(TextAttributeConverter
+							.preferenceDataToTextAttribute((String) event
+									.getNewValue()));
+		}
+
+		editor.refreshSourceViewer();
 	}
 }

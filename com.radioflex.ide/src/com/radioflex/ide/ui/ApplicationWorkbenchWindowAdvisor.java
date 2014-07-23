@@ -1,5 +1,11 @@
 package com.radioflex.ide.ui;
 
+import java.net.URL;
+import java.util.Enumeration;
+
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
@@ -26,5 +32,5 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
     public void postWindowOpen(){
     	getWindowConfigurer().getWindow().getShell().setMaximized(true);
     }
-    
+
 }

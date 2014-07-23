@@ -10,7 +10,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.editors,
  org.eclipse.jface.text,
  org.junit,
- org.eclipse.ui.navigator;bundle-version="3.5.300"
+ org.eclipse.ui.navigator;bundle-version="3.5.300",
+ org.eclipse.osgi
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.core.resources

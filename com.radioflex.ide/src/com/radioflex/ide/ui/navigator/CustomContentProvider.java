@@ -21,7 +21,7 @@ public class CustomContentProvider implements ITreeContentProvider, IResourceCha
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
-		System.out.println("CustomContentProvider.dispose is called");
+		//System.out.println("CustomContentProvider.dispose is called");
 		ResourcesPlugin.getWorkspace().removeResourceChangeListener(this);
 
 	}
@@ -29,22 +29,22 @@ public class CustomContentProvider implements ITreeContentProvider, IResourceCha
 	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		// TODO Auto-generated method stub
-		System.out.println("CustomContentProvider.inputChanged is called");
+		//System.out.println("CustomContentProvider.inputChanged is called");
 
 	}
 
 	@Override
 	public Object[] getElements(Object inputElement) {
 		// TODO Auto-generated method stub
-		System.out.println("CustomContentProvider.getElements is called!");
-		System.out.println("input Elements are: " + inputElement);
+		//System.out.println("CustomContentProvider.getElements is called!");
+		//System.out.println("input Elements are: " + inputElement);
 		return this.getChildren(inputElement);
 	}
 
 	@Override
 	public Object[] getChildren(Object parentElement) {
-		System.out.println("CustomContentProvider.getChildren is called!");
-		System.out.println("parent Elements are: " + parentElement);
+		//System.out.println("CustomContentProvider.getChildren is called!");
+		//System.out.println("parent Elements are: " + parentElement);
 		// TODO Auto-generated method stub
 		
 		
@@ -84,25 +84,25 @@ public class CustomContentProvider implements ITreeContentProvider, IResourceCha
 	@Override
 	public Object getParent(Object element) {
 		// TODO Auto-generated method stub
-		System.out.println("CustomContentProvider.getParent is called!");
-		System.out.println("element is: " + element);
+		//System.out.println("CustomContentProvider.getParent is called!");
+		//System.out.println("element is: " + element);
 		return null;
 	}
 
 	@Override
 	public boolean hasChildren(Object element) {
 		// TODO Auto-generated method stub
-		System.out.println("CustomContentProvider.hasChildren is called!");
+		//System.out.println("CustomContentProvider.hasChildren is called!");
 		int len = this.getChildren(element).length;
-		System.out.println("hasChildren is finished!");
+		//System.out.println("hasChildren is finished!");
 		return len>0;
 	}
 
 	@Override
 	public void resourceChanged(IResourceChangeEvent event) {
 		// TODO Auto-generated method stub
-		System.out.println("resourceChanged");
-		System.out.println(event);
+		//System.out.println("resourceChanged");
+		//System.out.println(event);
 		
 		
 	}

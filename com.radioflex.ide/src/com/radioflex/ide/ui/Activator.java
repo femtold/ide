@@ -1,8 +1,16 @@
 package com.radioflex.ide.ui;
 
+import java.net.URL;
+import java.util.Enumeration;
+
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+
+import com.radioflex.ide.ui.Activator;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -57,5 +65,35 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
+	}
+	
+	/**
+	 * get the xml file path
+	 * @param entry
+	 * @return
+	 */
+	public static String getFilePathFromPlugin(String entry) {
+		URL url = null;
+		IPath path = null;
+		String result = "";
+
+		Enumeration<URL> enu = Activator.getDefault().getBundle()
+				.findEntries("/", entry, true);
+		if (enu.hasMoreElements()) {
+			url = (URL) enu.nextElement();
+		}
+
+		if (url == null) {
+			return "";
+		}
+
+		try {
+			path = new Path(FileLocator.toFileURL(url).getPath());
+			result = path.makeAbsolute().toOSString();
+		} catch (Exception e) {
+			result = "";
+		}
+
+		return result;
 	}
 }

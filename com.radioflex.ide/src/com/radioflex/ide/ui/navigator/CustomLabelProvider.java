@@ -10,34 +10,34 @@ public class CustomLabelProvider implements ILabelProvider {
 	@Override
 	public void addListener(ILabelProviderListener listener) {
 		// TODO Auto-generated method stub
-		System.out.println("CustomLabelProvider.addListener is called");
+		//System.out.println("CustomLabelProvider.addListener is called");
 
 	}
 
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
-		System.out.println("CustomLabelProvider.dispose is called");
+		//System.out.println("CustomLabelProvider.dispose is called");
 	}
 
 	@Override
 	public boolean isLabelProperty(Object element, String property) {
 		// TODO Auto-generated method stub
-		System.out.println("CustomLabelProvider.isLabelProperty is called");
+		//System.out.println("CustomLabelProvider.isLabelProperty is called");
 		return false;
 	}
 
 	@Override
 	public void removeListener(ILabelProviderListener listener) {
 		// TODO Auto-generated method stub
-		System.out.println("CustomLabelProvider.removeListener is called");
+		//System.out.println("CustomLabelProvider.removeListener is called");
 
 	}
 
 	@Override
 	public Image getImage(Object element) {
 		// TODO Auto-generated method stub
-		System.out.println("CustomLabelProvider.getImage is called");
+		//System.out.println("CustomLabelProvider.getImage is called");
 		/*
 		 * return icon according to the type of element: 
 		 * 		IProject, 
@@ -51,7 +51,7 @@ public class CustomLabelProvider implements ILabelProvider {
 	@Override
 	public String getText(Object element) {
 		// TODO Auto-generated method stub
-		System.out.println("CustomLabelProvider.getText is called: " + element.toString());
+		//System.out.println("CustomLabelProvider.getText is called: " + element.toString());
 		
 		if(element instanceof IResource) {
 			return ((IResource)element).getName();
