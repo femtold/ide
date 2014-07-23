@@ -4,6 +4,7 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.rules.FastPartitioner;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.SourceViewer;
+import org.eclipse.jface.text.source.SourceViewerConfiguration;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
@@ -39,6 +40,15 @@ public class RadioflexEditor extends TextEditor{
 		ISourceViewer isv = getSourceViewer();
 		if (isv instanceof SourceViewer) {
 			((SourceViewer) getSourceViewer()).refresh();
+		}
+	}
+	
+	public void dispose() {
+		super.dispose();
+
+		SourceViewerConfiguration svc = getSourceViewerConfiguration();
+		if (svc instanceof RESourceViewerConfiguration) {
+			((RESourceViewerConfiguration) svc).dispose();
 		}
 	}
 }

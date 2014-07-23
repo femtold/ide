@@ -56,7 +56,22 @@ public class Constants {
 	 * Preference key for segment text style preference keys.
 	 */
 	public static final String PREFERENCES_TEXTCOLOR_SEGMENT = "preferences.textcolor.segment"; //$NON-NLS-1$
-
+	
+	/**
+	 * Perference key for macros text style preferense keys.
+	 */
+	public static final String PREFERENCES_TEXTCOLOR_MACROS = "perferences.textcolor.macros"; //$NON-NLS-1$
+	
+	/**
+	 * Perference key for derivatives text style preferense keys.
+	 */
+	public static final String PREFERENCES_TEXTCOLOR_DERIVATIVES = "perferences.textcolor.derivatives"; //$NON-NLS-1$
+	
+	/**
+	 * Perference key for register text style preferense keys.
+	 */
+	public static final String PREFERENCES_TEXTCOLOR_REGISTER = "perferences.textcolor.register"; //$NON-NLS-1$
+	
 	/**
 	 * Name for the string partition.
 	 */

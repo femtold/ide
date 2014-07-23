@@ -22,6 +22,10 @@ public class RCodeScanner extends RuleBasedScanner implements
 		IPropertyChangeListener {
 	private Token instructionToken;
 	private Token segmentToken;
+	private Token macrosToken;
+	private Token derivativeToken;
+	private Token registerToken;
+
 	private RadioflexEditor editor;
 
 	public RCodeScanner(final RadioflexEditor editor) {
@@ -34,8 +38,7 @@ public class RCodeScanner extends RuleBasedScanner implements
 				.addPropertyChangeListener(this);
 
 		WordRuleCaseInsensitive wordRule = new WordRuleCaseInsensitive();
-		HashMap<String, String> instructions = SyntaxKeywords
-				.getInstructions();
+		HashMap<String, String> instructions = SyntaxKeywords.getInstructions();
 
 		if (instructions != null) {
 			for (String instruction : instructions.keySet()) {
@@ -52,11 +55,37 @@ public class RCodeScanner extends RuleBasedScanner implements
 			}
 		}
 		rules.add(wordRule);
-
+		
+		wordRule = new WordRuleCaseInsensitive();
+		HashMap<String, String> macros = SyntaxKeywords.getMacros();
+		if (segments != null) {
+			for (String macro : macros.keySet()) {
+				wordRule.addWord(macro, macrosToken);
+			}
+		}
+		rules.add(wordRule);
+		
+		wordRule = new WordRuleCaseInsensitive();
+		HashMap<String, String> derivatives = SyntaxKeywords.getDerivative();
+		if(segments != null){
+			for (String derivative : derivatives.keySet()){
+				wordRule.addWord(derivative, derivativeToken);
+			}
+		}
+		rules.add(wordRule);
+		
+		wordRule = new WordRuleCaseInsensitive();
+		HashMap<String, String> registers = SyntaxKeywords.getRegister();
+		if(segments != null){
+			for (String register : registers.keySet()){
+				wordRule.addWord(register, registerToken);
+			}
+		}
+		rules.add(wordRule);
+		
 		setRules(rules.toArray(new IRule[] {}));
 	}
 
-	
 	/**
 	 * Disposes the PropertyChangeListener from the PreferenceStore.
 	 */
@@ -64,7 +93,7 @@ public class RCodeScanner extends RuleBasedScanner implements
 		Activator.getDefault().getPreferenceStore()
 				.removePropertyChangeListener(this);
 	}
-	
+
 	/**
 	 * Create all Tokens.
 	 * 
@@ -81,8 +110,19 @@ public class RCodeScanner extends RuleBasedScanner implements
 		segmentToken = new Token(
 				TextAttributeConverter.preferenceDataToTextAttribute(store
 						.getString(Constants.PREFERENCES_TEXTCOLOR_SEGMENT)));
-	}
 
+		macrosToken = new Token(
+				TextAttributeConverter.preferenceDataToTextAttribute(store
+						.getString(Constants.PREFERENCES_TEXTCOLOR_MACROS)));
+
+		derivativeToken = new Token(
+				TextAttributeConverter.preferenceDataToTextAttribute(store
+						.getString(Constants.PREFERENCES_TEXTCOLOR_DERIVATIVES)));
+
+		registerToken = new Token(
+				TextAttributeConverter.preferenceDataToTextAttribute(store
+						.getString(Constants.PREFERENCES_TEXTCOLOR_REGISTER)));
+	}
 
 	public void propertyChange(PropertyChangeEvent event) {
 		if (event.getProperty().equals(
@@ -94,6 +134,24 @@ public class RCodeScanner extends RuleBasedScanner implements
 		} else if (event.getProperty().equals(
 				Constants.PREFERENCES_TEXTCOLOR_SEGMENT)) {
 			segmentToken
+					.setData(TextAttributeConverter
+							.preferenceDataToTextAttribute((String) event
+									.getNewValue()));
+		}else if (event.getProperty().equals(
+				Constants.PREFERENCES_TEXTCOLOR_MACROS)) {
+			macrosToken
+					.setData(TextAttributeConverter
+							.preferenceDataToTextAttribute((String) event
+									.getNewValue()));
+		}else if (event.getProperty().equals(
+				Constants.PREFERENCES_TEXTCOLOR_DERIVATIVES)) {
+			derivativeToken
+					.setData(TextAttributeConverter
+							.preferenceDataToTextAttribute((String) event
+									.getNewValue()));
+		}else if (event.getProperty().equals(
+				Constants.PREFERENCES_TEXTCOLOR_REGISTER)) {
+			registerToken
 					.setData(TextAttributeConverter
 							.preferenceDataToTextAttribute((String) event
 									.getNewValue()));

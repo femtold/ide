@@ -42,5 +42,15 @@ public class RESourceViewerConfiguration extends SourceViewerConfiguration {
 
 		return reconciler;
 	}
+	public void dispose() {
+		if (recodescanner != null) {
+			recodescanner.dispose();
+		}
 
+		for (int i = 0; i < scanner.length; i++) {
+			if (scanner[i] != null) {
+				scanner[i].dispose();
+			}
+		}
+	}
 }

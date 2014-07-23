@@ -33,6 +33,22 @@ public class Messages extends NLS{
 	 * Name of the segment text style.
 	 */
 	public static String TEXTCOLOR_SEGMENT_NAME;
+	
+	/**
+	 * Name of the macros text style.
+	 */
+	public static String TEXTCOLOR_MACROS_NAME;
+	
+	/**
+	 * Name of the derivative text style.
+	 */
+	public static String TEXTCOLOR_DERIVATIVE_NAME;
+	
+	/**
+	 * Name of the register text style.
+	 */
+	public static String TEXTCOLOR_REGISTER_NAME;
+	
 
 	/**
 	 * Syntax Highlight Title Text.

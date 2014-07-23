@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sets>
+  <macros command="INCLUDE" description=""/>
+  <macros command="DEFINE" description=""/>
+  <macros command="IF" description=""/>
+  <macros command="ELSE" description=""/>
+  <macros command="END" description=""/>
+  <register command="R" description=""/>
+  <register command="A" description=""/>
+  <register command="SPAR" description=""/>
+  <register command="CPAR" description=""/>
+  <register command="CR" description=""/>
+  <derivatives command=".ORG" description=""/>
+  <derivatives command=".ALIGN" description=""/>
+  <derivatives command=".SKIP" description=""/>
+  <derivatives command=".CODE" description=""/>
+  <derivatives command=".TEXT" description=""/>
+  <derivatives command=".DATA" description=""/>
+  <derivatives command=".DW" description=""/>
+  <derivatives command=".W" description=""/>
   <instruction command="AAA" description="ASCII Adjust after Addition" />
   <instruction command="AAD" description="ASCII Adjust AX before Division" />
   <instruction command="AAM" description="ASCII adjust alter multiply" />
   <instruction command="AAS" description="ASCII adjust after subtract" />
   <instruction command="ADC" description="Add with carry" />
   <segment field=".STACK" description="Assembler directive that reserves a memory space for program instructions" />
-  <segment field=".DATA" description="Assembler directive that defines program variables." />
-  <segment field=".CODE" description="Assembler directive that defines the program instructions." />
-  <segment field=".TEXT" description="Assembler directive that defines the program instructions." />
   <segment field=".MODEL" description="Assembler directive that defines the memory model to use in the program." />
 </sets>

@@ -36,6 +36,22 @@ public class PreferencesInitializer extends AbstractPreferenceInitializer {
 		textAttribute = TextAttributeConverter.textAttributesToPreferenceData(
 				new Color(display, 128, 64, 0), true, false);
 		store.setDefault(Constants.PREFERENCES_TEXTCOLOR_SEGMENT, textAttribute);
+		
+		textAttribute = TextAttributeConverter.textAttributesToPreferenceData(
+				new Color(display, 0,155,255), true, false);
+		store.setDefault(Constants.PREFERENCES_TEXTCOLOR_MACROS,
+				textAttribute);
+		
+		textAttribute = TextAttributeConverter.textAttributesToPreferenceData(
+				new Color(display, 15,148,15), true, false);
+		store.setDefault(Constants.PREFERENCES_TEXTCOLOR_DERIVATIVES,
+				textAttribute);
+		
+		textAttribute = TextAttributeConverter.textAttributesToPreferenceData(
+				new Color(display, 20,89,200), true, false);
+		store.setDefault(Constants.PREFERENCES_TEXTCOLOR_REGISTER,
+				textAttribute);
+		
 		PreferenceManager pm = PlatformUI.getWorkbench().getPreferenceManager();
 		IPreferenceNode[] arr = pm.getRootSubNodes();
 		for (IPreferenceNode pn : arr) {

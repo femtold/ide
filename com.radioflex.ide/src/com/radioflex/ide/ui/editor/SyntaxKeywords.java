@@ -26,8 +26,14 @@ import com.radioflex.ide.ui.Activator;
 public final class SyntaxKeywords {
 	private static HashMap<String, String> instructionMap = null;
 	private static HashMap<String, String> segmentMap = null;
+	private static HashMap<String, String> macrosMap = null;
+	private static HashMap<String, String> derivativeMap = null;
+	private static HashMap<String, String> registerMap = null;
 	private static String[][] sortedInstructionArray = null;
 	private static String[][] sortedSegmentArray = null;
+	private static String[][] sortedMacrosArray = null;
+	private static String[][] sortedDerivativeArray = null;
+	private static String[][] sortedRegisterArray = null;
 
 
 	private SyntaxKeywords() {
@@ -46,7 +52,28 @@ public final class SyntaxKeywords {
 		}
 		return segmentMap;
 	}
-
+	
+	public static HashMap<String, String> getMacros() {
+		if (macrosMap == null) {
+			loadXMLData();
+		}
+		return macrosMap;
+	}
+	
+	public static HashMap<String, String> getDerivative() {
+		if (derivativeMap == null) {
+			loadXMLData();
+		}
+		return derivativeMap;
+	}
+	
+	public static HashMap<String, String> getRegister() {
+		if (registerMap == null) {
+			loadXMLData();
+		}
+		return registerMap;
+	}
+	
 	public static String[][] getInstructionArray() {
 		if (sortedInstructionArray == null) {
 			loadXMLData();
@@ -73,6 +100,24 @@ public final class SyntaxKeywords {
 		} else {
 			segmentMap.clear();
 		}
+		
+		if (macrosMap == null) {
+			macrosMap = new HashMap<String, String>();
+		} else {
+			macrosMap.clear();
+		}
+		
+		if (derivativeMap == null) {
+			derivativeMap = new HashMap<String, String>();
+		} else {
+			derivativeMap.clear();
+		}
+		
+		if (registerMap == null) {
+			registerMap = new HashMap<String, String>();
+		} else {
+			registerMap.clear();
+		}
 
 		String xmlfile = Activator
 				.getFilePathFromPlugin("syntax_keywords.xml");
@@ -89,6 +134,15 @@ public final class SyntaxKeywords {
 					} else if (qName.equals("segment")) {
 						segmentMap.put(attributes.getValue("field"),
 								attributes.getValue("description"));
+					}else if (qName.equals("macros")) {
+						macrosMap.put(attributes.getValue("command"),
+								attributes.getValue("description"));
+					}else if (qName.equals("derivatives")) {
+						derivativeMap.put(attributes.getValue("command"),
+								attributes.getValue("description"));
+					}else if (qName.equals("register")) {
+						registerMap.put(attributes.getValue("command"),
+								attributes.getValue("description"));
 					}
 				}
 			});
@@ -103,7 +157,11 @@ public final class SyntaxKeywords {
 
 		sortedInstructionArray = new String[instructionMap.size()][3];
 		sortedSegmentArray = new String[segmentMap.size()][3];
-
+		sortedMacrosArray = new String[macrosMap.size()][3];
+		sortedDerivativeArray = new String[derivativeMap.size()][3];
+		sortedRegisterArray = new String[registerMap.size()][3];
+		
+		//instruction
 		Vector<String> sortVector = new Vector<String>(instructionMap.keySet());
 		Collections.sort(sortVector);
 		int pos = 0;
@@ -115,7 +173,8 @@ public final class SyntaxKeywords {
 					(String) instructionMap.get(element));
 			pos++;
 		}
-
+		
+		//segment
 		sortVector = new Vector<String>(segmentMap.keySet());
 		Collections.sort(sortVector);
 		pos = 0;
@@ -125,6 +184,45 @@ public final class SyntaxKeywords {
 			sortedSegmentArray[pos][1] = new String(element.toLowerCase());
 			sortedSegmentArray[pos][2] = new String(
 					(String) segmentMap.get(element));
+			pos++;
+		}
+		
+		//macros
+		sortVector = new Vector<String>(macrosMap.keySet());
+		Collections.sort(sortVector);
+		pos = 0;
+
+		for (String element : sortVector) {
+			sortedMacrosArray[pos][0] = new String(element);
+			sortedMacrosArray[pos][1] = new String(element.toLowerCase());
+			sortedMacrosArray[pos][2] = new String(
+					(String) macrosMap.get(element));
+			pos++;
+		}
+		
+		//derivative
+		sortVector = new Vector<String>(derivativeMap.keySet());
+		Collections.sort(sortVector);
+		pos = 0;
+
+		for (String element : sortVector) {
+			sortedDerivativeArray[pos][0] = new String(element);
+			sortedDerivativeArray[pos][1] = new String(element.toLowerCase());
+			sortedDerivativeArray[pos][2] = new String(
+					(String) derivativeMap.get(element));
+			pos++;
+		}
+		
+		//register
+		sortVector = new Vector<String>(registerMap.keySet());
+		Collections.sort(sortVector);
+		pos = 0;
+
+		for (String element : sortVector) {
+			sortedRegisterArray[pos][0] = new String(element);
+			sortedRegisterArray[pos][1] = new String(element.toLowerCase());
+			sortedRegisterArray[pos][2] = new String(
+					(String) registerMap.get(element));
 			pos++;
 		}
 	}

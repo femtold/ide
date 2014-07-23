@@ -38,7 +38,6 @@ import com.radioflex.ide.ui.Activator;
 import com.radioflex.ide.ui.Constants;
 import com.radioflex.ide.ui.Messages;
 
-
 /**
  * 
  * @author YMLiang
@@ -46,9 +45,6 @@ import com.radioflex.ide.ui.Messages;
  */
 public class PreferencesGeneral extends PreferencePage implements
 		IWorkbenchPreferencePage {
-	
-	
-	
 
 	/**
 	 * The keys of the overlay store.
@@ -61,7 +57,13 @@ public class PreferencesGeneral extends PreferencePage implements
 			{ Messages.TEXTCOLOR_INSTRUCTION_NAME,
 					Constants.PREFERENCES_TEXTCOLOR_INSTRUCTION },
 			{ Messages.TEXTCOLOR_SEGMENT_NAME,
-					Constants.PREFERENCES_TEXTCOLOR_SEGMENT } };
+					Constants.PREFERENCES_TEXTCOLOR_SEGMENT },
+			{ Messages.TEXTCOLOR_MACROS_NAME,
+					Constants.PREFERENCES_TEXTCOLOR_MACROS },
+			{ Messages.TEXTCOLOR_DERIVATIVE_NAME,
+					Constants.PREFERENCES_TEXTCOLOR_DERIVATIVES },
+			{ Messages.TEXTCOLOR_REGISTER_NAME,
+					Constants.PREFERENCES_TEXTCOLOR_REGISTER } };
 
 	private ColorSelector fSyntaxForegroundColorEditor;
 
@@ -158,7 +160,8 @@ public class PreferencesGeneral extends PreferencePage implements
 				.setLabelProvider(new ColorListLabelProvider());
 		fHighlightingColorListViewer
 				.setContentProvider(new ColorListContentProvider());
-		fHighlightingColorListViewer.setComparator(new WorkbenchViewerComparator());
+		fHighlightingColorListViewer
+				.setComparator(new WorkbenchViewerComparator());
 		gd = new GridData(SWT.BEGINNING, SWT.FILL, false, true);
 		gd.heightHint = convertHeightInCharsToPixels(5);
 		fHighlightingColorListViewer.getControl().setLayoutData(gd);
@@ -317,9 +320,10 @@ public class PreferencesGeneral extends PreferencePage implements
 		}
 
 		if (changes) {
-		    //Activator.getDefault().savePluginPreferences();
+			// Activator.getDefault().savePluginPreferences();
 			try {
-				InstanceScope.INSTANCE.getNode(Constants.PREFERENCES_ASM_ID).flush();
+				InstanceScope.INSTANCE.getNode(Constants.PREFERENCES_ASM_ID)
+						.flush();
 			} catch (BackingStoreException e) {
 				e.printStackTrace();
 			}
