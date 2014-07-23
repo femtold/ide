@@ -8,14 +8,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.ide,
  org.eclipse.ui.editors,
- org.eclipse.text,
  org.eclipse.jface.text,
  org.junit,
- org.eclipse.ui.navigator;bundle-version="3.5.300",
- org.eclipse.ui.navigator.resources;bundle-version="3.4.501"
+ org.eclipse.ui.navigator;bundle-version="3.5.300"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
-Import-Package: org.eclipse.core.resources,
- org.eclipse.ui.dialogs,
- org.eclipse.ui.wizards.datatransfer,
- org.eclipse.ui.wizards.newresource
+Import-Package: org.eclipse.core.resources

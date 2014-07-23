@@ -309,7 +309,10 @@
             viewerId="example.view">
           <includes>
              <contentExtension
-                   pattern="com.ide.projectExplorer.navigatorContent">
+                   pattern="org.eclipse.ui.navigator.resourceContent">
+             </contentExtension>
+             <contentExtension
+                   pattern="org.eclipse.ui.navigator.resources.filters.*">
              </contentExtension>
           </includes>
        </viewerContentBinding>
@@ -322,20 +325,6 @@
           </includes>
        </viewerActionBinding>
    </extension>
-    <extension
-          point="org.eclipse.ui.navigator.navigatorContent">
-       <navigatorContent
-             contentProvider="com.radioflex.ide.ui.navigator.CustomContentProvider"
-             id="com.ide.projectExplorer.navigatorContent"
-             labelProvider="com.radioflex.ide.ui.navigator.CustomLabelProvider"
-             name="IDE Navigator Content">
-          <triggerPoints>
-             <instanceof
-                   value="org.eclipse.core.resources.IWorkspaceRoot">
-             </instanceof>
-          </triggerPoints>
-       </navigatorContent>
-    </extension>
     <extension
           point="org.eclipse.ui.preferencePages">
        <page
