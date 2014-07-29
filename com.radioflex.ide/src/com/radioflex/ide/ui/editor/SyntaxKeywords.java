@@ -11,8 +11,12 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.ui.application.WorkbenchWindowAdvisor;
+import org.eclipse.ui.part.ResourceTransfer;
 
 import com.radioflex.ide.ui.Constants;
 import com.radioflex.ide.ui.Messages;
@@ -34,58 +38,74 @@ public final class SyntaxKeywords {
 	private static String[][] sortedMacrosArray = null;
 	private static String[][] sortedDerivativeArray = null;
 	private static String[][] sortedRegisterArray = null;
-
+	private static String xmlfile;
 
 	private SyntaxKeywords() {
 	}
 
 	public static HashMap<String, String> getInstructions() {
-		if (instructionMap == null) {
-			loadXMLData();
-		}
+		instructionMap = null;
+		loadXMLData();
 		return instructionMap;
 	}
 
 	public static HashMap<String, String> getSegments() {
-		if (segmentMap == null) {
-			loadXMLData();
-		}
+		segmentMap = null;
+		loadXMLData();
+		
 		return segmentMap;
 	}
 	
 	public static HashMap<String, String> getMacros() {
-		if (macrosMap == null) {
-			loadXMLData();
-		}
+		macrosMap = null;
+		loadXMLData();
+		
 		return macrosMap;
 	}
 	
 	public static HashMap<String, String> getDerivative() {
-		if (derivativeMap == null) {
-			loadXMLData();
-		}
+		derivativeMap = null;
+		loadXMLData();
 		return derivativeMap;
 	}
 	
 	public static HashMap<String, String> getRegister() {
-		if (registerMap == null) {
-			loadXMLData();
-		}
+		registerMap = null;
+		loadXMLData();
 		return registerMap;
 	}
 	
 	public static String[][] getInstructionArray() {
-		if (sortedInstructionArray == null) {
-			loadXMLData();
-		}
+		sortedInstructionArray = null;
+		loadXMLData();
+		
 		return sortedInstructionArray;
 	}
 
 	public static String[][] getSegmentArray() {
-		if (sortedSegmentArray == null) {
-			loadXMLData();
-		}
+		sortedSegmentArray = null;
+		loadXMLData();
+		
 		return sortedSegmentArray;
+	}
+	
+	public static String[][] getMacrosArray() {
+		sortedMacrosArray = null;
+		loadXMLData();
+		return sortedMacrosArray;
+	}
+	
+	public static String[][] getDerivativeArray() {
+		sortedDerivativeArray = null;
+		loadXMLData();
+		return sortedDerivativeArray;
+	}
+	
+	public static String[][] getRegisterArray() {
+		sortedRegisterArray = null;
+		loadXMLData();
+		
+		return sortedRegisterArray;
 	}
 
 	private static void loadXMLData() {
@@ -118,11 +138,17 @@ public final class SyntaxKeywords {
 		} else {
 			registerMap.clear();
 		}
+		
+		//选择默认配置还是用户定义的配置
+		String root = Platform.getInstanceLocation().getURL().getPath();
+		File mysyntax = new File(root + "syntax_keywords2.xml");
+		String xmlfile = new String();
 
-		String xmlfile = Activator
-				.getFilePathFromPlugin("syntax_keywords.xml");
-
-		try {
+		if(mysyntax.exists()){
+			xmlfile = Platform.getInstanceLocation().getURL().getPath()+"syntax_keywords2.xml";}
+		else{
+			xmlfile = Activator.getFilePathFromPlugin("syntax_keywords.xml");}
+		try{
 			SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
 			parser.parse(new File(xmlfile), new DefaultHandler() {
 				public void startElement(String uri, String localName,

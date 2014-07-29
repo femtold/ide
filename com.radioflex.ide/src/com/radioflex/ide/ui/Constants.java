@@ -73,6 +73,11 @@ public class Constants {
 	public static final String PREFERENCES_TEXTCOLOR_REGISTER = "perferences.textcolor.register"; //$NON-NLS-1$
 	
 	/**
+	 * Perference key for keywords have changed.
+	 */
+	public static final String PERFERENCE_KEYWORD_CHANGE = "perferences.keyword.change"; //$NON-NLS-1$
+	
+	/**
 	 * Name for the string partition.
 	 */
 	public static final String PARTITION_STRING = "partion.string";

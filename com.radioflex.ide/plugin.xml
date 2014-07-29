@@ -332,6 +332,12 @@
              id="com.radioflex.ide.page1"
              name="Prefrence">
        </page>
+       <page
+             category="com.radioflex.ide.page1"
+             class="com.radioflex.ide.ui.preference.PreferencesChangeKeywords"
+             id="com.radioflex.ide.page2"
+             name="Keywords">
+       </page>
     </extension>
     <extension
           point="org.eclipse.core.runtime.preferences">

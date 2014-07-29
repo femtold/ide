@@ -146,6 +146,7 @@ public class PreferencesGeneral extends PreferencePage implements
 		label.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
 		Composite editorComposite = new Composite(parent, SWT.NONE);
+		editorComposite.setSize(400, 800);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 2;
 		layout.marginHeight = 0;
@@ -163,7 +164,8 @@ public class PreferencesGeneral extends PreferencePage implements
 		fHighlightingColorListViewer
 				.setComparator(new WorkbenchViewerComparator());
 		gd = new GridData(SWT.BEGINNING, SWT.FILL, false, true);
-		gd.heightHint = convertHeightInCharsToPixels(5);
+		gd.widthHint = convertWidthInCharsToPixels(20);
+		gd.heightHint = convertHeightInCharsToPixels(10);
 		fHighlightingColorListViewer.getControl().setLayoutData(gd);
 
 		Composite stylesComposite = new Composite(editorComposite, SWT.NONE);

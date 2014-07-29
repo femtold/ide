@@ -14,6 +14,7 @@ import com.radioflex.ide.ui.Constants;
 
 public class PreferencesInitializer extends AbstractPreferenceInitializer {
 
+	private static int index;
 	@Override
 	public void initializeDefaultPreferences() {
 
@@ -52,12 +53,19 @@ public class PreferencesInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(Constants.PREFERENCES_TEXTCOLOR_REGISTER,
 				textAttribute);
 		
+		index = 1;
+		store.setDefault(Constants.PERFERENCE_KEYWORD_CHANGE,index);
+
+		
 		PreferenceManager pm = PlatformUI.getWorkbench().getPreferenceManager();
 		IPreferenceNode[] arr = pm.getRootSubNodes();
 		for (IPreferenceNode pn : arr) {
 			System.out.println("Label:" + pn.getLabelText() + " ID:"
 					+ pn.getId());
 		}
+	}
+	public static int gethasChange(){
+		return index;
 	}
 
 }

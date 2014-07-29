@@ -41,8 +41,13 @@ public class RadioflexEditor extends TextEditor{
 		if (isv instanceof SourceViewer) {
 			((SourceViewer) getSourceViewer()).refresh();
 		}
+		
 	}
 	
+	public void refreshSourceViewerConfiguration(){
+		this.setSourceViewerConfiguration(getSourceViewerConfiguration());
+	}
+		
 	public void dispose() {
 		super.dispose();
 

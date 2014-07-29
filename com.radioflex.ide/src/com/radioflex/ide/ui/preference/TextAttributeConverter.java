@@ -5,12 +5,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 
-/**
- * Converts the class TextAttributes into a PreferenceStore compatible form.
- * 
- * @author YMLiang
- * 
- */
+
 public final class TextAttributeConverter {
 
 	/**

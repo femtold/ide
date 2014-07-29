@@ -108,8 +108,57 @@ public class Messages extends NLS{
 	/**
 	   * Text for error for loading ASM instruction set.
 	   */
-	  public static String LOAD_ASMISET_ERROR;
-
+	public static String LOAD_ASMISET_ERROR;
+	
+	/**
+	 * The title for the preference page Keyword.
+	 */
+	public static String KEYWORD_TITLE;
+	
+	/**
+	 * The discription for the preference page Keyword.
+	 */
+	public static String KEYWORD_DISCRIPTION;
+	
+	/**
+	 * instruction-text
+	 */
+	public static String INSTRUCTION_TEXT;
+	
+	/**
+	 * Text for edit button
+	 */
+	public static String EDIT_BUTTON_TEXT;
+	
+	/**
+	 * Text for add button
+	 */
+	public static String ADD_BUTTON_TEXT;
+	
+	/**
+	 * Text for remove button
+	 */
+	public static String REMOVE_BUTTON_TEXT;
+	
+	/**
+	 * Text for uppercase
+	 */
+	public static String UPPERCASE_TEXT;
+	
+	/**
+	 * Text for lowercase
+	 */
+	public static String LOWERCASE_TEXT;
+	
+	/**
+	 * Text for description
+	 */
+	public static String DESCRIPTION_TEXT;
+	
+	/**
+	 * Label for keyword text
+	 */
+	public static String KEYWORD_LABEL_TEXT;
 	// Initialize the constants.
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

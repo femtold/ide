@@ -25,63 +25,20 @@ public class RCodeScanner extends RuleBasedScanner implements
 	private Token macrosToken;
 	private Token derivativeToken;
 	private Token registerToken;
+	private ArrayList<IRule> rules;
 
 	private RadioflexEditor editor;
 
 	public RCodeScanner(final RadioflexEditor editor) {
 		this.editor = editor;
 
-		ArrayList<IRule> rules = new ArrayList<IRule>();
+		rules = new ArrayList<IRule>();
 		createTokens(editor.getSite().getShell().getDisplay());
 
 		Activator.getDefault().getPreferenceStore()
 				.addPropertyChangeListener(this);
-
-		WordRuleCaseInsensitive wordRule = new WordRuleCaseInsensitive();
-		HashMap<String, String> instructions = SyntaxKeywords.getInstructions();
-
-		if (instructions != null) {
-			for (String instruction : instructions.keySet()) {
-				wordRule.addWord(instruction, instructionToken);
-			}
-		}
-		rules.add(wordRule);
-
-		wordRule = new WordRuleCaseInsensitive();
-		HashMap<String, String> segments = SyntaxKeywords.getSegments();
-		if (segments != null) {
-			for (String segment : segments.keySet()) {
-				wordRule.addWord(segment, segmentToken);
-			}
-		}
-		rules.add(wordRule);
 		
-		wordRule = new WordRuleCaseInsensitive();
-		HashMap<String, String> macros = SyntaxKeywords.getMacros();
-		if (segments != null) {
-			for (String macro : macros.keySet()) {
-				wordRule.addWord(macro, macrosToken);
-			}
-		}
-		rules.add(wordRule);
-		
-		wordRule = new WordRuleCaseInsensitive();
-		HashMap<String, String> derivatives = SyntaxKeywords.getDerivative();
-		if(segments != null){
-			for (String derivative : derivatives.keySet()){
-				wordRule.addWord(derivative, derivativeToken);
-			}
-		}
-		rules.add(wordRule);
-		
-		wordRule = new WordRuleCaseInsensitive();
-		HashMap<String, String> registers = SyntaxKeywords.getRegister();
-		if(segments != null){
-			for (String register : registers.keySet()){
-				wordRule.addWord(register, registerToken);
-			}
-		}
-		rules.add(wordRule);
+		addWordRules();
 		
 		setRules(rules.toArray(new IRule[] {}));
 	}
@@ -155,8 +112,60 @@ public class RCodeScanner extends RuleBasedScanner implements
 					.setData(TextAttributeConverter
 							.preferenceDataToTextAttribute((String) event
 									.getNewValue()));
+		}else if (event.getProperty().equals(Constants.PERFERENCE_KEYWORD_CHANGE)){
+			rules.removeAll(rules);
+			addWordRules();
+			setRules(rules.toArray(new IRule[] {}));
+			editor.refreshSourceViewerConfiguration();
 		}
-
 		editor.refreshSourceViewer();
+	}
+	
+	private void addWordRules(){
+		WordRuleCaseInsensitive wordRule = new WordRuleCaseInsensitive();
+		HashMap<String, String> instructions = SyntaxKeywords.getInstructions();
+		if (instructions != null) {
+			for (String instruction : instructions.keySet()) {
+				wordRule.addWord(instruction, instructionToken);
+			}
+		}
+		rules.add(wordRule);
+
+		wordRule = new WordRuleCaseInsensitive();
+		HashMap<String, String> segments = SyntaxKeywords.getSegments();
+		if (segments != null) {
+			for (String segment : segments.keySet()) {
+				wordRule.addWord(segment, segmentToken);
+			}
+		}
+		rules.add(wordRule);
+		
+		wordRule = new WordRuleCaseInsensitive();
+		HashMap<String, String> macros = SyntaxKeywords.getMacros();
+		if (segments != null) {
+			for (String macro : macros.keySet()) {
+				wordRule.addWord(macro, macrosToken);
+			}
+		}
+		rules.add(wordRule);
+		
+		wordRule = new WordRuleCaseInsensitive();
+		HashMap<String, String> derivatives = SyntaxKeywords.getDerivative();
+		if(segments != null){
+			for (String derivative : derivatives.keySet()){
+				wordRule.addWord(derivative, derivativeToken);
+			}
+		}
+		rules.add(wordRule);
+		
+		wordRule = new WordRuleCaseInsensitive();
+		HashMap<String, String> registers = SyntaxKeywords.getRegister();
+		if(segments != null){
+			for (String register : registers.keySet()){
+				wordRule.addWord(register, registerToken);
+			}
+		}
+		rules.add(wordRule);
+		
 	}
 }

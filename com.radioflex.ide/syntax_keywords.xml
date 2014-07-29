@@ -5,8 +5,16 @@
   <macros command="IF" description=""/>
   <macros command="ELSE" description=""/>
   <macros command="END" description=""/>
-  <register command="R" description=""/>
-  <register command="A" description=""/>
+  <register command="R0" description=""/>
+  <register command="R1" description=""/>
+  <register command="R2" description=""/>
+  <register command="R3" description=""/>
+  <register command="R4" description=""/>
+  <register command="R5" description=""/>
+  <register command="R6" description=""/>
+  <register command="R7" description=""/>
+  <register command="R8" description=""/>
+  <register command="R9" description=""/>
   <register command="SPAR" description=""/>
   <register command="CPAR" description=""/>
   <register command="CR" description=""/>
@@ -23,6 +31,10 @@
   <instruction command="AAM" description="ASCII adjust alter multiply" />
   <instruction command="AAS" description="ASCII adjust after subtract" />
   <instruction command="ADC" description="Add with carry" />
+  <instruction command="ADD" description="Add" />
+  <instruction command="ADDPS" description="Packed Single-FP Add" />
+  <instruction command="ADDSS" description="Scalar Single-FP Add" />
+  <instruction command="AND" description="And" />
   <segment field=".STACK" description="Assembler directive that reserves a memory space for program instructions" />
   <segment field=".MODEL" description="Assembler directive that defines the memory model to use in the program." />
 </sets>
