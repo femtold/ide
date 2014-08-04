@@ -7,7 +7,7 @@
          point="org.eclipse.core.runtime.applications">
       <application>
          <run
-               class="com.radioflex.ide.ui.Application">
+               class="com.radioflex.ide.Application">
          </run>
       </application>
    </extension>
@@ -15,9 +15,38 @@
          point="org.eclipse.ui.perspectives">
       <perspective
             name="RCP Perspective"
-            class="com.radioflex.ide.ui.Perspective"
+            class="com.radioflex.ide.Perspective"
             id="com.red.perspective">
       </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="com.red.perspective">
+         <view
+               closeable="true"
+               id="org.eclipse.ui.views.ContentOutline"
+               minimized="false"
+               moveable="true"
+               relationship="stack"
+               standalone="true"
+               visible="true">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            name="Project Explorer"
+            class="org.eclipse.ui.navigator.CommonNavigator"
+            id="example.view">
+      </view>
+      <view
+            class="org.eclipse.ui.views.contentoutline.ContentOutline"
+            id="org.eclipse.ui.views.ContentOutline"
+            name="%editor.outline.name"
+            restorable="true">
+      </view>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -261,47 +290,33 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="com.radioflex.ide.ui.handlers.NewFileHandler"
             commandId="com.radioflex.ide.command.newfile">
       </handler>
       <handler
-            class="com.radioflex.ide.ui.handlers.NewProjectHandler"
             commandId="com.radioflex.ide.command.newproject">
       </handler>
       <handler
-            class="com.radioflex.ide.ui.handlers.OpenFileHandler"
             commandId="com.radioflex.ide.command.openfile">
       </handler>
       <handler
-            class="com.radioflex.ide.ui.handlers.SaveAsHandler"
             commandId="com.radioflex.ide.command.saveas">
       </handler>
       <handler
-            class="com.radioflex.ide.ui.handlers.OpenProjectHandler"
             commandId="com.radioflex.ide.command.openproject">
       </handler>
       <handler
-            class="com.radioflex.ide.ui.handlers.ExitHandler"
             commandId="com.radioflex.ide.command.exit">
       </handler>
    </extension>
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="com.radioflex.ide.ui.editor.RadioflexEditor"
-            default="false"
-            extensions="asm"
+            class="com.radioflex.ide.ui.editor.RadioFlexEditor"
+            extensions="asm,test"
+            icon="icons/editorsample.png"
             id="com.radioflex.ide.editor1"
             name="RadioflexEditor">
       </editor>
-   </extension>
-   <extension
-         point="org.eclipse.ui.views">
-      <view
-            name="Project Explorer"
-            class="org.eclipse.ui.navigator.CommonNavigator"
-            id="example.view">
-      </view>
    </extension>
     <extension
          point="org.eclipse.ui.navigator.viewer">
@@ -345,5 +360,19 @@
              class="com.radioflex.ide.ui.preference.PreferencesInitializer">
        </initializer>
     </extension>
+    <extension
+          id="radioflex_product"
+          point="org.eclipse.core.runtime.products">
+       <product
+             application="com.radioflex.ide.application"
+             name="ide_product">
+          <property
+                name="appName"
+                value="ide_product">
+          </property>
+       </product>
+    </extension>
+
+
 
 </plugin>
