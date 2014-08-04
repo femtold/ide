@@ -1,21 +1,24 @@
 package com.radioflex.ide.ui.editor;
 
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.presentation.IPresentationReconciler;
 import org.eclipse.jface.text.presentation.PresentationReconciler;
+import org.eclipse.jface.text.reconciler.IReconciler;
+import org.eclipse.jface.text.reconciler.IReconcilingStrategy;
+import org.eclipse.jface.text.reconciler.MonoReconciler;
 import org.eclipse.jface.text.rules.DefaultDamagerRepairer;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
 
-import com.radioflex.ide.ui.Constants;
-
+import com.radioflex.ide.Constants;
 
 public class RESourceViewerConfiguration extends SourceViewerConfiguration {
-	private RadioflexEditor editor;
+	private RadioFlexEditor editor;
 	private RCodeScanner recodescanner = null;
 	private PropertyChangeRuleBaseScanner[] scanner = new PropertyChangeRuleBaseScanner[2];
-	
-	public RESourceViewerConfiguration(RadioflexEditor editor) {
+
+	public RESourceViewerConfiguration(RadioFlexEditor editor) {
 		this.editor = editor;
 	}
 
@@ -42,6 +45,7 @@ public class RESourceViewerConfiguration extends SourceViewerConfiguration {
 
 		return reconciler;
 	}
+
 	public void dispose() {
 		if (recodescanner != null) {
 			recodescanner.dispose();
@@ -53,4 +57,24 @@ public class RESourceViewerConfiguration extends SourceViewerConfiguration {
 			}
 		}
 	}
+
+	// ------------------------------------------------------------
+	// ----Added by Yidan Wang-------------------------------------
+	/**
+	 * {@inheritDoc}
+	 */
+	public IReconciler getReconciler(ISourceViewer sourceViewer) {
+		IReconcilingStrategy reconcilingStrategy = new REReconcilingStategy(
+				editor);
+
+		MonoReconciler reconciler = new MonoReconciler(reconcilingStrategy,
+				false);
+		reconciler.setProgressMonitor(new NullProgressMonitor());
+		reconciler.setDelay(500);
+
+		return reconciler;
+	}
+	// ----end-----------------------------------------------------
+	// ------------------------------------------------------------
+
 }
