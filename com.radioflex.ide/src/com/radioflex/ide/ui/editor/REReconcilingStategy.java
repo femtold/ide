@@ -13,7 +13,7 @@ import org.eclipse.jface.text.reconciler.DirtyRegion;
 import org.eclipse.jface.text.reconciler.IReconcilingStrategy;
 import org.eclipse.jface.text.reconciler.IReconcilingStrategyExtension;
 
-import com.radioflex.ide.*;
+import com.radioflex.ide.ui.*;
 
 
 /**

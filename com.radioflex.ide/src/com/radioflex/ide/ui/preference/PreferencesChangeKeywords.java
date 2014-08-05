@@ -38,7 +38,7 @@ import org.osgi.service.prefs.BackingStoreException;
 import com.radioflex.ide.ui.Activator;
 import com.radioflex.ide.ui.Constants;
 import com.radioflex.ide.ui.Messages;
-import com.radioflex.ide.ui.editor.RadioflexEditor;
+import com.radioflex.ide.ui.editor.RadioFlexEditor;
 import com.radioflex.ide.ui.editor.SyntaxKeywords;
 
 /**

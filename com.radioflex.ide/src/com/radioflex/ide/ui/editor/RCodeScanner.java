@@ -2,7 +2,6 @@ package com.radioflex.ide.ui.editor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -27,9 +26,9 @@ public class RCodeScanner extends RuleBasedScanner implements
 	private Token registerToken;
 	private ArrayList<IRule> rules;
 
-	private RadioflexEditor editor;
+	private RadioFlexEditor editor;
 
-	public RCodeScanner(final RadioflexEditor editor) {
+	public RCodeScanner(final RadioFlexEditor editor) {
 		this.editor = editor;
 
 		rules = new ArrayList<IRule>();

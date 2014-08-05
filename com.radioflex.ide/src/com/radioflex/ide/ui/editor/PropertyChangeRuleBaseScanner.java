@@ -13,11 +13,11 @@ import com.radioflex.ide.ui.preference.TextAttributeConverter;
 public class PropertyChangeRuleBaseScanner extends RuleBasedScanner implements IPropertyChangeListener{
 
 	private Token defToken;
-	private RadioflexEditor editor;
+	private RadioFlexEditor editor;
 	private String preferencesKey;
 
 
-	public PropertyChangeRuleBaseScanner(final RadioflexEditor editor,
+	public PropertyChangeRuleBaseScanner(final RadioFlexEditor editor,
 			final String preferencesKey) {
 		this.editor = editor;
 		this.preferencesKey = preferencesKey;

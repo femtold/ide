@@ -14,6 +14,8 @@ public class Messages extends NLS{
 	 */
 	private static final String BUNDLE_NAME = "com.radioflex.ide.ui.messages";
 
+	public static String BADLOCATION_ERROR;
+
 	/**
 	 * Name of the string text style.
 	 */

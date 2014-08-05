@@ -11,7 +11,7 @@ import org.eclipse.jface.text.rules.DefaultDamagerRepairer;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
 
-import com.radioflex.ide.Constants;
+import com.radioflex.ide.ui.Constants;
 
 public class RESourceViewerConfiguration extends SourceViewerConfiguration {
 	private RadioFlexEditor editor;

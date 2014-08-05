@@ -18,14 +18,13 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.ui.application.WorkbenchWindowAdvisor;
 import org.eclipse.ui.part.ResourceTransfer;
 
+import com.radioflex.ide.ui.Activator;
 import com.radioflex.ide.ui.Constants;
 import com.radioflex.ide.ui.Messages;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
-
-import com.radioflex.ide.ui.Activator;
 
 public final class SyntaxKeywords {
 	private static HashMap<String, String> instructionMap = null;

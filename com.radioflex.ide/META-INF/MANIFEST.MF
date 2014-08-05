@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: RadioFlex
 Bundle-SymbolicName: com.radioflex.ide;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: com.radioflex.ide.Activator
+Bundle-Activator: com.radioflex.ide.ui.Activator
 Bundle-Localization: radioflex
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;bundle-version="3.9.0",

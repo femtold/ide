@@ -17,7 +17,7 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.editors.text.TextEditor;
 
-import com.radioflex.ide.*;
+import com.radioflex.ide.ui.*;
 
 public class REOutlineParser {
 

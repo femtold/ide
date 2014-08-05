@@ -11,11 +11,11 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
-import com.radioflex.ide.Constants;
+import com.radioflex.ide.ui.Constants;
 import com.radioflex.ide.ui.editor.REPartitionScanner;
 
 public class RadioFlexEditor extends TextEditor {
-	public static final String ID = "com.radioflex.ide.radioflexeditor";
+	public static final String ID = "com.radioflex.ide.ui.radioflexeditor";
 
 	public void init(IEditorSite site, IEditorInput input)
 			throws PartInitException {

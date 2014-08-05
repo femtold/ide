@@ -9,6 +9,7 @@ import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.jface.text.rules.RuleBasedPartitionScanner;
 import org.eclipse.jface.text.rules.SingleLineRule;
 import org.eclipse.jface.text.rules.Token;
+
 import com.radioflex.ide.ui.Constants;
 
 public class REPartitionScanner extends RuleBasedPartitionScanner {
