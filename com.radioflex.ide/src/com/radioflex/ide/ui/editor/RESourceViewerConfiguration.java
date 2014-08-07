@@ -2,6 +2,7 @@ package com.radioflex.ide.ui.editor;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.ITextHover;
 import org.eclipse.jface.text.presentation.IPresentationReconciler;
 import org.eclipse.jface.text.presentation.PresentationReconciler;
 import org.eclipse.jface.text.reconciler.IReconciler;
@@ -56,6 +57,12 @@ public class RESourceViewerConfiguration extends SourceViewerConfiguration {
 				scanner[i].dispose();
 			}
 		}
+	}
+	
+	@Override
+	public ITextHover getTextHover(ISourceViewer sourceViewer,
+			String contentType) {
+		return new RTextHover(sourceViewer);
 	}
 
 	// ------------------------------------------------------------
