@@ -1,30 +1,22 @@
 package com.radioflex.ide.ui.editor;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Vector;
 
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.ui.application.WorkbenchWindowAdvisor;
-import org.eclipse.ui.part.ResourceTransfer;
-
-import com.radioflex.ide.ui.Activator;
-import com.radioflex.ide.ui.Constants;
-import com.radioflex.ide.ui.Messages;
-
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
+
+import com.radioflex.ide.ui.Activator;
+import com.radioflex.ide.ui.IDConstants;
+import com.radioflex.ide.ui.Messages;
 
 public final class SyntaxKeywords {
 	private static HashMap<String, String> instructionMap = null;
@@ -175,7 +167,7 @@ public final class SyntaxKeywords {
 			Activator
 					.getDefault()
 					.getLog()
-					.log(new Status(Status.ERROR, Constants.PLUGIN_ID,
+					.log(new Status(Status.ERROR, IDConstants.PLUGIN_ID,
 							Status.OK,
 							Messages.LOAD_ASMISET_ERROR, e));
 		}

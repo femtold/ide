@@ -9,14 +9,12 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.editors.text.TextEditor;
-import org.eclipse.ui.texteditor.SourceViewerDecorationSupport;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 import com.radioflex.ide.ui.Constants;
-import com.radioflex.ide.ui.editor.REPartitionScanner;
+import com.radioflex.ide.ui.editor.RFPartitionScanner;
 
 public class RadioFlexEditor extends TextEditor {
-	public static final String ID = "com.radioflex.ide.ui.radioflexeditor";
 
 	public void init(IEditorSite site, IEditorInput input)
 			throws PartInitException {
@@ -26,16 +24,16 @@ public class RadioFlexEditor extends TextEditor {
 				.getDocument(getEditorInput());
 
 		FastPartitioner partitioner = new FastPartitioner(
-				new REPartitionScanner(),
-				new String[] { Constants.PARTITION_STRING,
-						Constants.PARTITION_COMMENT });
+				new RFPartitionScanner(),
+				new String[] { RFPartitionScanner.PARTITION_STRING,
+					RFPartitionScanner.PARTITION_COMMENT });
 		partitioner.connect(document);
 		document.setDocumentPartitioner(partitioner);
 	}
 
 	protected void initializeEditor() {
 		super.initializeEditor();
-		setSourceViewerConfiguration(new RESourceViewerConfiguration(this));
+		setSourceViewerConfiguration(new RFSourceViewerConfiguration(this));
 	}
 
 	public void refreshSourceViewer() {
@@ -54,21 +52,15 @@ public class RadioFlexEditor extends TextEditor {
 		super.dispose();
 
 		SourceViewerConfiguration svc = getSourceViewerConfiguration();
-		if (svc instanceof RESourceViewerConfiguration) {
-			((RESourceViewerConfiguration) svc).dispose();
+		if (svc instanceof RFSourceViewerConfiguration) {
+			((RFSourceViewerConfiguration) svc).dispose();
 		}
 	}
-
 
 	// ------------------------------------------------------------
 	// ----Added by Yidan Wang-------------------------------------
 	/** field: outlinePage for RadioFlexEditor */
-	private REOutlinePage outlinePage;
-
-	// For test: print class call trace
-	private void print(String s) {
-		System.out.println(s);
-	}
+	private RFOutlinePage outlinePage;
 
 	/**
 	 * {@inheritDoc}
@@ -76,26 +68,26 @@ public class RadioFlexEditor extends TextEditor {
 	@Override
 	public Object getAdapter(Class adapter) {
 
-		print("start in RadioFlexEditor getAdapter");
-		print(adapter.getName());
+		// FT.print("start in RadioFlexEditor getAdapter");
+		// FT.print(adapter.getName());
 
 		if (adapter != null && IContentOutlinePage.class.equals(adapter)) {
 			// create and initialize an IContentOutlinePage
-			// object(REOutlinePage) for the particular text
+			// object(RFOutlinePage) for the particular text
 			// editor(RadioFlexEditor) first
 			if (outlinePage == null) {
-				outlinePage = new REOutlinePage(this);
+				outlinePage = new RFOutlinePage(this);
 				IEditorInput input = getEditorInput();
 				if (input != null) {
 					outlinePage.setInput(input);
 				}
 			}
 
-			print("end in RadioFlexEditor getAdapter: return contentOutlinePage");
+			// FT.print("end in RadioFlexEditor getAdapter: return contentOutlinePage");
 			return outlinePage;
 		}
 
-		print("end in RadioFlexEditor getAdapter: return super.getAdapter(adapter)");
+		// FT.print("end in RadioFlexEditor getAdapter: return super.getAdapter(adapter)");
 		return super.getAdapter(adapter);
 	}
 
@@ -104,21 +96,21 @@ public class RadioFlexEditor extends TextEditor {
 	 */
 	public void updateOutlinePage() {
 
-		print("start in RadioFlexEditor updateContentOutlinePage");
+		// FT.print("start in RadioFlexEditor updateContentOutlinePage");
 
 		if (outlinePage != null) {
 			IEditorInput input = getEditorInput();
 			if (input != null) {
 
 				// test
-				print(" in RadioFlexEditor updateContentOutlinePage:"
-						+ "outlinePage.setInput(input)");
+				// FT.print(" in RadioFlexEditor updateContentOutlinePage:"
+				// + "outlinePage.setInput(input)");
 
 				outlinePage.setInput(input);
 			}
 		}
 
-		print("end in RadioFlexEditor updateContentOutlinePage");
+		// FT.print("end in RadioFlexEditor updateContentOutlinePage");
 
 	}
 	// ----end-----------------------------------------------------

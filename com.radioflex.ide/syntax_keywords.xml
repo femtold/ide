@@ -416,10 +416,10 @@
   <instruction command="XLATB" description="Table Look-up Translation" />
   <instruction command="XOR" description="Exclusive or" />
   <instruction command="XORPS" description="Bit-wise Logical XOR for Single-FP Data" />
-  <instruction command="proc" description="Procedure begin" />
-  <instruction command="endp" description="Procedure end" />
-  <instruction command="macro" description="Macro begin" />
-  <instruction command="endm" description="Macro end" />
+  <instruction command="PROC" description="Procedure begin" />
+  <instruction command="ENDP" description="Procedure end" />
+  <instruction command="MACRO" description="Macro begin" />
+  <instruction command="ENDM" description="Macro end" />
   <segment field=".STACK" description="Assembler directive that reserves a memory space for program instructions" />
   <segment field=".DATA" description="Assembler directive that defines program variables." />
   <segment field=".CODE" description="Assembler directive that defines the program instructions." />

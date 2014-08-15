@@ -4,6 +4,7 @@
 
    <extension
          id="application"
+         name="radioflex"
          point="org.eclipse.core.runtime.applications">
       <application>
          <run
@@ -14,15 +15,15 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            name="RCP Perspective"
-            class="com.radioflex.ide.ui.Perspective"
-            id="com.red.perspective">
+            name="%perspective.edit.name"
+            class="com.radioflex.ide.ui.EditPerspective"
+            id="com.radioflex.ide.ui.perspective.edit">
       </perspective>
    </extension>
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
       <perspectiveExtension
-            targetID="com.red.perspective">
+            targetID="com.radioflex.ide.ui.perspective.edit">
          <view
                closeable="true"
                id="org.eclipse.ui.views.ContentOutline"
@@ -32,19 +33,35 @@
                standalone="true"
                visible="true">
          </view>
+         <view
+               id="com.radioflex.ide.ui.view.projectexplorer"
+               minimized="false"
+               relationship="stack">
+         </view>
+         <view
+               id="com.radioflex.ide.ui.view.xmlview"
+               minimized="false"
+               relationship="stack">
+         </view>
       </perspectiveExtension>
    </extension>
    <extension
          point="org.eclipse.ui.views">
       <view
-            name="Project Explorer"
+            name="%projectExplorer.name"
             class="org.eclipse.ui.navigator.CommonNavigator"
-            id="example.view">
+            id="com.radioflex.ide.ui.view.projectexplorer">
       </view>
       <view
             class="org.eclipse.ui.views.contentoutline.ContentOutline"
             id="org.eclipse.ui.views.ContentOutline"
             name="%editor.outline.name"
+            restorable="true">
+      </view>
+      <view
+            class="com.radioflex.ide.xml.XMLView"
+            id="com.radioflex.ide.ui.view.xmlview"
+            name="%xmlview.name"
             restorable="true">
       </view>
    </extension>
@@ -314,14 +331,14 @@
             class="com.radioflex.ide.ui.editor.RadioFlexEditor"
             extensions="asm,test"
             icon="icons/editorsample.png"
-            id="com.radioflex.ide.editor1"
-            name="RadioflexEditor">
+            id="com.radioflex.ide.ui.radioflexeditor"
+            name="%editor.name">
       </editor>
    </extension>
     <extension
          point="org.eclipse.ui.navigator.viewer">
        <viewerContentBinding 
-            viewerId="example.view">
+            viewerId="com.radioflex.ide.ui.view.projectexplorer">
           <includes>
              <contentExtension
                    pattern="org.eclipse.ui.navigator.resourceContent">
@@ -332,7 +349,7 @@
           </includes>
        </viewerContentBinding>
        <viewerActionBinding
-             viewerId="example.view">
+             viewerId="com.radioflex.ide.ui.view.projectexplorer">
           <includes>
              <actionExtension
                    pattern="org.eclipse.ui.navigator.resources.*">
@@ -343,32 +360,52 @@
     <extension
           point="org.eclipse.ui.preferencePages">
        <page
-             class="com.radioflex.ide.ui.preference.PreferencesGeneral"
-             id="com.radioflex.ide.page1"
-             name="Prefrence">
+             class="com.radioflex.ide.ui.preference.PreferenceEditor"
+             id="com.radioflex.ide.ui.preferencepage.general"
+             name="%preferencePage.general.name">
        </page>
        <page
-             category="com.radioflex.ide.page1"
-             class="com.radioflex.ide.ui.preference.PreferencesChangeKeywords"
-             id="com.radioflex.ide.page2"
-             name="Keywords">
+             category="com.radioflex.ide.ui.preferencepage.general"
+             class="com.radioflex.ide.ui.preference.PreferenceChangeKeywords"
+             id="com.radioflex.ide.ui.preferencepage.keyword"
+             name="%preferencePage.keyword.name">
        </page>
     </extension>
     <extension
           point="org.eclipse.core.runtime.preferences">
        <initializer
-             class="com.radioflex.ide.ui.preference.PreferencesInitializer">
+             class="com.radioflex.ide.ui.preference.PreferenceInitializer">
        </initializer>
     </extension>
     <extension
-          id="radioflex_product"
+          id="product"
           point="org.eclipse.core.runtime.products">
        <product
              application="com.radioflex.ide.application"
-             name="ide_product">
+             name="RadioFlex">
           <property
                 name="appName"
-                value="ide_product">
+                value="RadioFlex">
+          </property>
+          <property
+                name="windowImages"
+                value="icons/alt_window16.gif,icons/alt_window32.gif">
+          </property>
+          <property
+                name="startupForegroundColor"
+                value="000000">
+          </property>
+          <property
+                name="startupMessageRect"
+                value="7,252,445,20">
+          </property>
+          <property
+                name="startupProgressRect"
+                value="5,275,445,15">
+          </property>
+          <property
+                name="preferenceCustomization"
+                value="plugin_customization.ini">
           </property>
        </product>
     </extension>

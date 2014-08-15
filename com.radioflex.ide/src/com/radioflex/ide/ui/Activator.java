@@ -17,9 +17,6 @@ import com.radioflex.ide.ui.Activator;
  */
 public class Activator extends AbstractUIPlugin {
 
-	// The plug-in ID
-	public static final String PLUGIN_ID = "com.red"; //$NON-NLS-1$
-
 	// The shared instance
 	private static Activator plugin;
 	
@@ -64,7 +61,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
-		return imageDescriptorFromPlugin(PLUGIN_ID, path);
+		return imageDescriptorFromPlugin(IDConstants.PLUGIN_ID, path);
 	}
 	
 	/**
