@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            type="pda.launchType"
+            class="example.debug.ui.launcher.PDATabGroup"
+            id="pda.tabGroup"/>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            icon="icons/full/obj16/pda.gif"
+            configTypeID="pda.launchType"
+            id="pda.typeImage"/>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            label="PDA Application"
+            icon="icons/full/obj16/pda.gif"
+            class="example.debug.ui.launcher.PDALaunchShortcut"
+            modes="run, debug"
+            id="pda.launchShortcut">
+         <contextualLaunch>
+            <enablement>
+               <with variable="selection">
+                  <count value="1"/>
+                  <iterate>
+                     <instanceof value="org.eclipse.core.resources.IFile"/>
+                     <test
+                           value="*.pda"
+                           property="org.eclipse.debug.ui.matchesPattern"/>
+                  </iterate>
+               </with>
+            </enablement>
+         </contextualLaunch>
+      </shortcut>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.debugModelPresentations">
+      <debugModelPresentation
+            class="example.debug.ui.presentation.PDAModelPresentation"
+            id="pda.debugModel"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            filenames="*.pda"
+            class="example.debug.ui.editor.PDAEditor"
+            icon="icons/full/obj16/pda.gif"
+            default="true"
+            name="PDA Editor"
+            id="pda.editor"
+            extensions="pda"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editorActions">
+      <editorContribution
+            targetID="pda.editor"
+            id="pda.rulerActions">
+         <action
+               label="Not Used"
+               class="example.debug.ui.editor.RulerToggleBreakpointAction"
+               style="push"
+               actionID="RulerDoubleClick"
+               id="pda.doubleClickBreakpointAction"/>
+      </editorContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            icon="icons/full/obj16/pda.gif"
+            class="example.debug.ui.views.DataStackView"
+            name="PDA Data Stack"
+            id="pda.dataStackView"/>
+   </extension>
+  
+    <extension
+          point="org.eclipse.ui.perspectiveExtensions">
+       <perspectiveExtension targetID="org.eclipse.debug.ui.DebugPerspective">
+          <view
+                visible="false"
+                relative="org.eclipse.debug.ui.VariableView"
+                relationship="stack"
+                id="pda.dataStackView"/>
+       </perspectiveExtension>
+    </extension>
+     <extension
+           point="org.eclipse.ui.contexts">
+        <context
+              parentId="org.eclipse.debug.ui.debugging"
+              description="Debugging PDA Programs"
+              name="Debugging PDA Programs"
+              id="pda.debugging"/>
+     </extension>
+	  <extension
+	        point="org.eclipse.debug.ui.debugModelContextBindings">
+	     <modelContextBinding
+	           contextId="pda.debugging"
+	           debugModelId="pda.debugModel"/>
+	  </extension>
+	   <extension
+	         point="org.eclipse.debug.ui.contextViewBindings">
+	      <contextViewBinding
+	            contextId="pda.debugging"
+	            viewId="pda.dataStackView"/>
+	   </extension>
+
+	<extension
+         point="org.eclipse.ui.popupMenus">           
+      <viewerContribution
+            targetID="pda.editor.rulerMenu"
+            id="pda.editor.rulerActions">
+         <action
+               label="Toggle Breakpoint"
+               class="example.debug.ui.editor.RulerToggleBreakpointAction"
+               menubarPath="debug"
+               id="pda.editor.ruler.toggleBreakpointAction"/>
+      </viewerContribution>
+      <viewerContribution
+            targetID="pda.editor.contextMenu"
+            id="pda.editor.menuActions">
+         <action
+               label="Run to Line"
+               definitionId="org.eclipse.debug.ui.commands.RunToLine"
+               class="org.eclipse.debug.ui.actions.RunToLineActionDelegate"
+               menubarPath="additions"
+               id="pda.editor.context.runToLineAction"/>
+      </viewerContribution>
+      <objectContribution
+            adaptable="false"
+            id="pda.dropToFrame"
+            objectClass="example.debug.core.model.PDAStackFrame">
+         <action
+               class="example.debug.ui.editor.PopFrameActionDelegate"
+               id="pda.dropToFrame"
+               label="Pop Frame"/>
+      </objectContribution> 
+   </extension>
+   
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            class="example.debug.ui.breakpoints.PDAEditorAdapterFactory"
+            adaptableType="example.debug.ui.editor.PDAEditor">
+			<adapter type="org.eclipse.debug.ui.actions.IToggleBreakpointsTarget"/>
+      </factory>
+   </extension>
+</plugin>
