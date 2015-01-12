@@ -6,7 +6,7 @@
       <variable
             description="Path to Perl executable in the local file system"
             name="perlExecutable"
-            initialValue="c:\perl\bin\perl.exe"/>
+            initialValue="/usr/bin/perl"/>
    </extension>
    <extension
          point="org.eclipse.debug.core.launchConfigurationTypes">

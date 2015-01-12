@@ -58,7 +58,7 @@ public class PDALaunchDelegate extends LaunchConfigurationDelegate {
 		String path = perl.getValue();
 		
 		//hardcoded perl location -yw
-		path="D:\\Program_Files\\Perl\\bin\\perl.exe";
+		path="//usr//bin//perl";
 		
 		
 		if (path == null) {
