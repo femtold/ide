@@ -160,7 +160,7 @@ org.eclipse.jdt.compiler.apt,1.1.0.v20140509-1235,file:/home/kevin/Desktop/eclip
 org.eclipse.jdt.compiler.tool,1.0.300.v20140311-1758,file:/home/kevin/Desktop/eclipse/plugins/org.eclipse.jdt.compiler.tool_1.0.300.v20140311-1758.jar,4,false
 org.eclipse.jdt.core,3.10.0.v20140604-1726,file:/home/kevin/Desktop/eclipse/plugins/org.eclipse.jdt.core_3.10.0.v20140604-1726.jar,4,false
 org.eclipse.jdt.core.manipulation,1.5.0.v20130605-1748,file:/home/kevin/Desktop/eclipse/plugins/org.eclipse.jdt.core.manipulation_1.5.0.v20130605-1748.jar,4,false
-org.eclipse.jdt.debug,3.8.100.v20140522-1618,file:/home/kevin/Desktop/eclipse/plugins/org.eclipse.jdt.debug_3.8.100.v20140522-1618/,4,false
+org.eclipse.jdt.debug,3.8.100.v20140522-1618,file:/home/kevin/ide/org.eclipse.jdt.debug/,4,false
 org.eclipse.jdt.debug.ui,3.6.300.v20140512-1926,file:/home/kevin/Desktop/eclipse/plugins/org.eclipse.jdt.debug.ui_3.6.300.v20140512-1926.jar,4,false
 org.eclipse.jdt.doc.isv,3.10.0.v20140604-1919,file:/home/kevin/Desktop/eclipse/plugins/org.eclipse.jdt.doc.isv_3.10.0.v20140604-1919.jar,4,false
 org.eclipse.jdt.doc.user,3.10.0.v20140606-1536,file:/home/kevin/Desktop/eclipse/plugins/org.eclipse.jdt.doc.user_3.10.0.v20140606-1536.jar,4,false
