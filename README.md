@@ -1,3 +1,3 @@
 ide
 ===
-We develop the IDE which is named Eclipse Assembly development tools(EADT).
+We develop the IDE which can compile and debug the Assembly Language.
